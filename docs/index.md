@@ -45,10 +45,6 @@ It is not a standalone application; it requires a compatible storage backend to 
 ## What's inside
 
 - **[Introduction](introduction/overview.md)** — what {{ brand.name }} is and how its pieces fit together.
-- **Getting started** *(coming soon)* — the shortest path from zero to an editable document.
 - **[Installation](installation/docker.md)** — production deployment via Docker, packages, and native installs.
-- **Configuration** *(coming soon)* — databases, queues, storage, TLS, JWT.
 - **[Integration](integration/nextcloud.md)** — connecting {{ brand.name }} to Nextcloud and other DMS platforms.
-- **Operations** *(coming soon)* — running {{ brand.name }} in production: monitoring, backups, upgrades.
 - **[Development](development/setup.md)** — building {{ brand.name }} from source.
-- **Reference** *(coming soon)* — changelog, glossary.
