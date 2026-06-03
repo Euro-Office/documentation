@@ -1,0 +1,7 @@
+{% set brand = config.extra.brand %}
+<div class="md-copyright">
+  &copy; {{ build_date_utc.year }} {{ brand.company }}.
+  {% if brand.url %}
+    <a href="{{ brand.url }}" target="_blank" rel="noopener">{{ brand.url | replace('https://', '') }}</a>
+  {% endif %}
+</div>

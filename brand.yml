@@ -1,0 +1,25 @@
+# Brand configuration — source of truth for whitelabeling these docs.
+#
+# To rebrand the documentation:
+#   1. Edit the values below, OR
+#   2. Set the matching BRAND_* environment variables at build time:
+#        BRAND_NAME, BRAND_SHORT_NAME, BRAND_TAGLINE, BRAND_COMPANY,
+#        BRAND_PRODUCT_SLUG, BRAND_CLI, BRAND_URL, BRAND_REPO, BRAND_DOCS_URL
+#   3. Replace docs/assets/logo.svg and docs/assets/favicon.svg with your own.
+#   4. Override theme colors via BRAND_PRIMARY_COLOR / BRAND_ACCENT_COLOR
+#      (any Material palette name: indigo, deep purple, teal, blue, etc.).
+#
+# Values here are interpolated into every page as `{{ brand.* }}` via
+# the mkdocs-macros plugin (see main.py).
+
+brand:
+  name: Euro-Office
+  short_name: Euro-Office
+  tagline: Your sovereign office
+  company: Euro-Office
+  product_slug: eurooffice
+  cli: eurooffice
+  image: ghcr.io/euro-office/documentserver
+  url: https://euro-office.com
+  repo: https://github.com/Euro-Office
+  docs_url: https://docs.euro-office.com

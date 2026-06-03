@@ -1,0 +1,105 @@
+# Top-level site config.
+#
+# Chrome (site name, logo, favicon, palette) is overridden via BRAND_* env
+# vars; defaults are sourced from brand.yml. See main.py for the in-content
+# `{{ brand.* }}` macros.
+
+site_name: !ENV [BRAND_NAME, 'Euro-Office']
+site_description: !ENV [BRAND_TAGLINE, 'Your sovereign office']
+site_url: !ENV [BRAND_DOCS_URL, 'https://docs.euro-office.com']
+repo_url: !ENV [BRAND_REPO_URL, 'https://github.com/Euro-Office/documentation']
+repo_name: !ENV [BRAND_REPO_NAME, 'Euro-Office/documentation']
+edit_uri: edit/main/docs/
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  custom_dir: overrides
+  logo: !ENV [BRAND_LOGO, 'assets/logo.svg']
+  favicon: !ENV [BRAND_FAVICON, 'assets/favicon.svg']
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - media: '(prefers-color-scheme: light)'
+      scheme: default
+      primary: !ENV [BRAND_PRIMARY_COLOR, 'indigo']
+      accent: !ENV [BRAND_ACCENT_COLOR, 'indigo']
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: '(prefers-color-scheme: dark)'
+      scheme: slate
+      primary: !ENV [BRAND_PRIMARY_COLOR, 'indigo']
+      accent: !ENV [BRAND_ACCENT_COLOR, 'indigo']
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.action.edit
+    - content.action.view
+
+extra_css:
+  - stylesheets/brand.css
+
+plugins:
+  - search
+  - macros:
+      module_name: main
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+nav:
+  - Home: index.md
+  - Introduction:
+      - introduction/overview.md
+      - introduction/architecture.md
+      - introduction/components.md
+      - introduction/licensing.md
+  - Getting started:
+      - getting-started/quickstart.md
+      - getting-started/requirements.md
+      - getting-started/first-document.md
+  - Installation:
+      - installation/docker.md

@@ -1,0 +1,9 @@
+mkdocs==1.6.1
+mkdocs-material==9.5.49
+mkdocs-macros-plugin==1.3.7
+pymdown-extensions==10.14
+# Pinned below 2.20: pymdownx.highlight passes `filename=None` for untitled
+# code blocks, which Pygments 2.20 fails to coerce (AttributeError on
+# html.escape). Lift this pin once pymdownx or Pygments fixes the regression.
+Pygments==2.19.2
+PyYAML==6.0.2
