@@ -1,0 +1,13 @@
+/* Brand-specific overrides. Material's palette colors are already driven
+   by mkdocs.yml; this file is the place for layout/typography tweaks that
+   should rebrand cleanly. */
+
+:root {
+  --md-text-font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Make landing-page grid cards a touch tighter and consistent in height. */
+.md-typeset .grid.cards > :is(ul, ol) > li,
+.md-typeset .grid > .card {
+  border-radius: 0.4rem;
+}
