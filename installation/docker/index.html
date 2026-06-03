@@ -985,19 +985,16 @@ that terminates TLS.</p>
 <h2 id="pull-and-run">Pull and run<a class="headerlink" href="#pull-and-run" title="Permanent link">&para;</a></h2>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>eurooffice<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span>--restart<span class="o">=</span>always<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span>-p<span class="w"> </span><span class="m">443</span>:443<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span>-v<span class="w"> </span>eurooffice_data:/var/www/eurooffice/Data<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span>-v<span class="w"> </span>eurooffice_log:/var/log/eurooffice<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span>-e<span class="w"> </span><span class="nv">JWT_ENABLED</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span>-e<span class="w"> </span><span class="nv">JWT_SECRET</span><span class="o">=</span><span class="k">$(</span>openssl<span class="w"> </span>rand<span class="w"> </span>-hex<span class="w"> </span><span class="m">32</span><span class="k">)</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span>ghcr.io/euro-office/documentserver
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span>-e<span class="w"> </span><span class="nv">JWT_ENABLED</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span>-e<span class="w"> </span><span class="nv">EXAMPLE_ENABLED</span><span class="o">=</span><span class="nb">true</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span>-e<span class="w"> </span><span class="nv">JWT_SECRET</span><span class="o">=</span>my_personal_secret<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span>ghcr.io/euro-office/documentserver
 </span></code></pre></div>
 <p>Key flags:</p>
 <ul>
-<li><code>JWT_ENABLED=true</code> — refuse any unsigned API request. <strong>Always enable in production.</strong></li>
 <li><code>JWT_SECRET</code> — the shared secret used by your DMS to sign requests. Store it somewhere durable.</li>
-<li><code>-v …_data:/var/www/eurooffice/Data</code> — persists document data across container restarts.</li>
-<li><code>-v …_log:/var/log/eurooffice</code> — keeps logs outside the container.</li>
+<li><code>EXAMPLE_ENABLED</code> — enables the example app for trying out the editor without connecting to a DMS. Don't enable in production.</li>
 </ul>
 <h2 id="image-tags">Image tags<a class="headerlink" href="#image-tags" title="Permanent link">&para;</a></h2>
 <table>
@@ -1023,17 +1020,11 @@ that terminates TLS.</p>
 </tbody>
 </table>
 <h2 id="tls">TLS<a class="headerlink" href="#tls" title="Permanent link">&para;</a></h2>
-<p>Terminate TLS in front of the container. An upcoming TLS and reverse proxy
-guide will provide nginx and Caddy examples.</p>
+<p>Terminate TLS in front of the container with a reverse proxy such as nginx
+or Caddy.</p>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
-<p>The container accepts configuration via environment variables (to be covered
-per subsystem in an upcoming configuration section) or by mounting a
-<code>local.json</code> into <code>/etc/eurooffice/documentserver/local.json</code>.</p>
-<div class="admonition note">
-<p class="admonition-title">Coming soon</p>
-<p>This page will be expanded with the full environment-variable matrix
-migrated from <code>DocumentServer/build/README.md</code>.</p>
-</div>
+<p>The container accepts configuration via environment variables or
+by mounting a <code>local.json</code> into <code>/etc/eurooffice/documentserver/local.json</code>.</p>
 <h2 id="source">Source<a class="headerlink" href="#source" title="Permanent link">&para;</a></h2>
 <p>The Docker image is built from <code>DocumentServer/build/</code> in the
 <a href="https://github.com/Euro-Office/DocumentServer">DocumentServer repository</a>. To build it
