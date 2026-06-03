@@ -21,7 +21,7 @@ It is not a standalone application; it requires a compatible storage backend to 
 
     Get {{ brand.name }} running and connected to your platform in minutes.
 
-    [:octicons-arrow-right-24: Start in 5 minutes](getting-started/quickstart.md)
+    [:octicons-arrow-right-24: Install with Docker](installation/docker.md)
 
 -   :material-package-down:{ .lg .middle } **Install**
 
@@ -39,17 +39,16 @@ It is not a standalone application; it requires a compatible storage backend to 
 
     [:octicons-arrow-right-24: Developer setup](development/setup.md)
 
--   :material-palette:{ .lg .middle } **Whitelabel**
 
 </div>
 
 ## What's inside
 
 - **[Introduction](introduction/overview.md)** — what {{ brand.name }} is and how its pieces fit together.
-- **[Getting started](getting-started/quickstart.md)** — the shortest path from zero to an editable document.
+- **Getting started** *(coming soon)* — the shortest path from zero to an editable document.
 - **[Installation](installation/docker.md)** — production deployment via Docker, packages, and native installs.
-- **[Configuration](configuration/overview.md)** — databases, queues, storage, TLS, JWT.
+- **Configuration** *(coming soon)* — databases, queues, storage, TLS, JWT.
 - **[Integration](integration/nextcloud.md)** — connecting {{ brand.name }} to Nextcloud and other DMS platforms.
-- **[Operations](operations/monitoring.md)** — running {{ brand.name }} in production: monitoring, backups, upgrades.
+- **Operations** *(coming soon)* — running {{ brand.name }} in production: monitoring, backups, upgrades.
 - **[Development](development/setup.md)** — building {{ brand.name }} from source.
-- **[Reference](reference/changelog.md)** — changelog, glossary.
+- **Reference** *(coming soon)* — changelog, glossary.

@@ -97,9 +97,11 @@ nav:
       - introduction/architecture.md
       - introduction/components.md
       - introduction/licensing.md
-  - Getting started:
-      - getting-started/quickstart.md
-      - getting-started/requirements.md
-      - getting-started/first-document.md
   - Installation:
       - installation/docker.md
+  - Integration:
+      - integration/nextcloud.md
+  - Development:
+      - development/setup.md
+      - development/building.md
+      - development/contributing.md
