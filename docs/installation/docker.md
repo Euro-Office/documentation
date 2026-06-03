@@ -31,14 +31,12 @@ Key flags:
 
 ## TLS
 
-Terminate TLS in front of the container. See
-[TLS and reverse proxy](../configuration/tls-and-proxy.md) for nginx and
-Caddy examples.
+Terminate TLS in front of the container with a reverse proxy such as nginx
+or Caddy.
 
 ## Configuration
 
-The container accepts configuration via environment variables (covered per
-subsystem in the [configuration section](../configuration/overview.md)) or
+The container accepts configuration via environment variables or
 by mounting a `local.json` into `/etc/{{ brand.product_slug }}/documentserver/local.json`.
 
 ## Source
