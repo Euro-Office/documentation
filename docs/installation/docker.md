@@ -9,20 +9,17 @@ that terminates TLS.
 ```bash
 docker run -d --name {{ brand.product_slug }} \
     --restart=always \
-    -p 443:443 \
-    -v {{ brand.product_slug }}_data:/var/www/{{ brand.product_slug }}/Data \
-    -v {{ brand.product_slug }}_log:/var/log/{{ brand.product_slug }} \
+    -p 80:80 \
     -e JWT_ENABLED=true \
-    -e JWT_SECRET=$(openssl rand -hex 32) \
+    -e EXAMPLE_ENABLED=true
+    -e JWT_SECRET=my_personal_secret \
     {{ brand.image }}
 ```
 
 Key flags:
 
-- `JWT_ENABLED=true` — refuse any unsigned API request. **Always enable in production.**
 - `JWT_SECRET` — the shared secret used by your DMS to sign requests. Store it somewhere durable.
-- `-v …_data:/var/www/{{ brand.product_slug }}/Data` — persists document data across container restarts.
-- `-v …_log:/var/log/{{ brand.product_slug }}` — keeps logs outside the container.
+- `EXAMPLE_ENABLED` — enables the example app for trying out the editor without connecting to a DMS. Don't enable in production.
 
 ## Image tags
 
@@ -34,18 +31,15 @@ Key flags:
 
 ## TLS
 
-Terminate TLS in front of the container. An upcoming TLS and reverse proxy
-guide will provide nginx and Caddy examples.
+Terminate TLS in front of the container. See
+[TLS and reverse proxy](../configuration/tls-and-proxy.md) for nginx and
+Caddy examples.
 
 ## Configuration
 
-The container accepts configuration via environment variables (to be covered
-per subsystem in an upcoming configuration section) or by mounting a
-`local.json` into `/etc/{{ brand.product_slug }}/documentserver/local.json`.
-
-!!! note "Coming soon"
-    This page will be expanded with the full environment-variable matrix
-    migrated from `DocumentServer/build/README.md`.
+The container accepts configuration via environment variables (covered per
+subsystem in the [configuration section](../configuration/overview.md)) or
+by mounting a `local.json` into `/etc/{{ brand.product_slug }}/documentserver/local.json`.
 
 ## Source
 
