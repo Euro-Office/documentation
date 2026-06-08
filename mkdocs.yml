@@ -99,13 +99,13 @@ nav:
       - introduction/licensing.md
   - Installation:
       - installation/index.md
-      - installation/ubuntu.md
-      - installation/fedora.md
-      - installation/example.md
-      - installation/docker.md
+      - Ubuntu: installation/ubuntu.md
+      - Fedora: installation/fedora.md
+      - Docker: installation/docker.md
+      - Verify with Example App: installation/example.md
   - Integration:
       - integration/nextcloud.md
   - Development:
       - development/setup.md
-      - development/building.md
+      - Building from source: development/building.md
       - development/contributing.md

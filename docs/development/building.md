@@ -63,6 +63,49 @@ Verify the image was created:
 docker images ghcr.io/euro-office/documentserver
 ```
 
+## Run and verify the image
+
+Start the locally built image:
+
+```bash
+docker run -d \
+  --name euro-office-dev \
+  --restart=unless-stopped \
+  -p 8080:80 \
+  -e JWT_ENABLED=true \
+  -e JWT_SECRET=dev-secret \
+  ghcr.io/euro-office/documentserver:latest
+```
+
+Wait for the container to finish initialising, then check the health endpoint:
+
+```bash
+curl http://localhost:8080/healthcheck
+```
+
+Expected output: `true`
+
+To open the built-in example app in a browser:
+
+```bash
+docker run -d \
+  --name euro-office-dev \
+  --restart=unless-stopped \
+  -p 8080:80 \
+  -e JWT_ENABLED=true \
+  -e JWT_SECRET=dev-secret \
+  -e EXAMPLE_ENABLED=true \
+  ghcr.io/euro-office/documentserver:latest
+```
+
+Then open `http://localhost:8080/example/` in your browser.
+
+Stop and remove the container when done:
+
+```bash
+docker stop euro-office-dev && docker rm euro-office-dev
+```
+
 ## Build targets
 
 | Target / group | Command | Output |

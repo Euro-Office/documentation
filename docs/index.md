@@ -27,9 +27,9 @@ It is not a standalone application; it requires a compatible storage backend to 
 
     ---
 
-    Docker, Docker Compose, Debian/Ubuntu, and RHEL/Fedora installation paths.
+    Docker, Ubuntu (deb), and Fedora (rpm) installation guides.
 
-    [:octicons-arrow-right-24: Installation guide](installation/docker.md)
+    [:octicons-arrow-right-24: Installation guide](installation/index.md)
 
 -   :material-code-tags:{ .lg .middle } **Develop**
 
@@ -39,12 +39,19 @@ It is not a standalone application; it requires a compatible storage backend to 
 
     [:octicons-arrow-right-24: Developer setup](development/setup.md)
 
+-   :material-hammer-wrench:{ .lg .middle } **Build**
+
+    ---
+
+    Build the Docker image and distribution packages from source.
+
+    [:octicons-arrow-right-24: Building from source](development/building.md)
 
 </div>
 
 ## What's inside
 
 - **[Introduction](introduction/overview.md)** — what {{ brand.name }} is and how its pieces fit together.
-- **[Installation](installation/docker.md)** — production deployment via Docker, packages, and native installs.
+- **[Installation](installation/index.md)** — production deployment via Docker, Ubuntu (deb), and Fedora (rpm).
 - **[Integration](integration/nextcloud.md)** — connecting {{ brand.name }} to Nextcloud and other DMS platforms.
-- **[Development](development/setup.md)** — building {{ brand.name }} from source.
+- **[Development](development/building.md)** — building {{ brand.name }} from source.
