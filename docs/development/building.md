@@ -106,6 +106,67 @@ Stop and remove the container when done:
 docker stop euro-office-dev && docker rm euro-office-dev
 ```
 
+## Build a branded image
+
+The default build produces a Euro-Office image. To build for a different brand
+(e.g. Nextcloud Office), include the brand-specific HCL file alongside the main
+bake file:
+
+```bash
+cd DocumentServer/build
+BUILDX_BAKE_ENTITLEMENTS_FS=0 docker buildx bake \
+  -f docker-bake.hcl \
+  -f brands/nextcloud-office-brand/brand-server.hcl \
+  --allow=fs.read=.. \
+  --allow=fs=./brands/nextcloud-office-brand/generated \
+  --load
+```
+
+The additional `--allow=fs=./brands/nextcloud-office-brand/generated` flag grants
+BuildKit write access to the directory where the brand asset generation step
+exports its output.
+
+**What changes in a branded build:**
+
+| | Default (Euro-Office) | Branded (Nextcloud Office) |
+|---|---|---|
+| Image tag | `ghcr.io/euro-office/documentserver:latest` | `ghcr.io/nextcloud-office/documentserver:latest` |
+| Install path inside image | `/var/www/euro-office/` | `/var/www/nextcloud-office/` |
+| `COMPANY_NAME` env var | `Euro-Office` | `Nextcloud Office` |
+| Visual assets | Built-in defaults | Generated from `brands/nextcloud-office-brand/svg/` |
+
+**How the brand asset pipeline works:**
+
+Including a brand HCL overrides the dummy `brand-icons` target in `docker-bake.hcl`
+with a real build step. That step runs `build-icons.bake.Dockerfile` — an Alpine
+container with `rsvg-convert` — which renders the five source SVGs into PNGs, ICOs,
+and correctly named SVG copies for each component (server admin panel, welcome page,
+example app). The generated files are written to
+`brands/nextcloud-office-brand/generated/` and then injected into the `server`,
+`example`, and `packages` build stages via `COPY --from=brand-icons`.
+
+**Customising the visual identity:**
+
+The visual output depends entirely on the five source SVGs in
+`brands/nextcloud-office-brand/svg/`:
+
+```
+svg/
+  logo-dark.svg        # square app icon, dark theme
+  logo-light.svg       # square app icon, light theme
+  logo-large-dark.svg  # wide logo, dark theme
+  logo-large-light.svg # wide logo, light theme
+  splash.svg           # splash screen
+```
+
+Replace these files with your own artwork and rebuild. Everything in `generated/`
+is derived from them — do not edit the generated files directly.
+
+!!! note
+    The `nextcloud-office-brand` source SVGs currently contain the same artwork as
+    the Euro-Office defaults. A branded build will compile and run correctly, but
+    will look identical until different SVG files are placed in `svg/`.
+
 ## Build targets
 
 | Target / group | Command | Output |
