@@ -98,6 +98,9 @@ nav:
       - introduction/components.md
       - introduction/licensing.md
   - Installation:
+      - installation/index.md
+      - installation/ubuntu.md
+      - installation/example.md
       - installation/docker.md
   - Integration:
       - integration/nextcloud.md
