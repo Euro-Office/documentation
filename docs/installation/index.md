@@ -22,6 +22,14 @@ Euro-Office Document Server can be installed in several ways depending on your e
 
     [:octicons-arrow-right-24: Docker installation](docker.md)
 
+- :fontawesome-brands-debian: **Debian (deb)**
+
+    ---
+
+    Install from a `.deb` package on Debian 12 (Bookworm).
+
+    [:octicons-arrow-right-24: Debian installation](debian.md)
+
 - :fontawesome-brands-fedora: **Fedora (rpm)**
 
     ---
@@ -40,9 +48,9 @@ Once installed, use the built-in example app to confirm the editor works end-to-
 
 ## Which method should I use?
 
-| | Docker | Ubuntu (deb) | Fedora (rpm) |
-|---|---|---|---|
-| Recommended for production | Yes | Yes | Yes |
-| Easiest to update | Yes | | |
-| Full OS control | | Yes | Yes |
-| Nextcloud integration | Yes | Yes | Yes |
+| | Docker | Ubuntu (deb) | Debian (deb) | Fedora (rpm) |
+|---|---|---|---|---|
+| Recommended for production | Yes | Yes | Yes | |
+| Easiest to update | Yes | | | |
+| Full OS control | | Yes | Yes | Yes |
+| Nextcloud integration | Yes | Yes | Yes | Yes |
