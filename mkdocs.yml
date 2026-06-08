@@ -100,6 +100,7 @@ nav:
   - Installation:
       - installation/index.md
       - installation/ubuntu.md
+      - installation/fedora.md
       - installation/example.md
       - installation/docker.md
   - Integration:

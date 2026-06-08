@@ -22,6 +22,14 @@ Euro-Office Document Server can be installed in several ways depending on your e
 
     [:octicons-arrow-right-24: Docker installation](docker.md)
 
+- :fontawesome-brands-fedora: **Fedora (rpm)**
+
+    ---
+
+    Install from an `.rpm` package on Fedora 41+. Tested on Fedora 44.
+
+    [:octicons-arrow-right-24: Fedora installation](fedora.md)
+
 </div>
 
 ## Verify your installation
@@ -32,9 +40,9 @@ Once installed, use the built-in example app to confirm the editor works end-to-
 
 ## Which method should I use?
 
-| | Docker | Ubuntu (deb) |
-|---|---|---|
-| Recommended for production | Yes | Yes |
-| Easiest to update | Yes | |
-| Full OS control | | Yes |
-| Nextcloud integration | Yes | Yes |
+| | Docker | Ubuntu (deb) | Fedora (rpm) |
+|---|---|---|---|
+| Recommended for production | Yes | Yes | Yes |
+| Easiest to update | Yes | | |
+| Full OS control | | Yes | Yes |
+| Nextcloud integration | Yes | Yes | Yes |

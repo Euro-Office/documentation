@@ -20,7 +20,7 @@ sudo tee /etc/euro-office/documentserver-example/local.json > /dev/null << 'EOF'
 {
   "server": {
     "siteUrl": "/",
-    "exampleUrl": "http://localhost/example/",
+    "exampleUrl": "http://YOUR_SERVER_IP/example",
     "token": {
       "enable": true,
       "secret": "REPLACE_WITH_YOUR_JWT_SECRET",
@@ -31,11 +31,21 @@ sudo tee /etc/euro-office/documentserver-example/local.json > /dev/null << 'EOF'
 EOF
 ```
 
-Replace `REPLACE_WITH_YOUR_JWT_SECRET` with the JWT secret from the document server:
+Replace `YOUR_SERVER_IP` with the server's IP address or hostname. Do not add a trailing slash.
 
-```bash
-sudo grep -A1 '"browser"' /etc/euro-office/documentserver/local.json | grep '"string"'
-```
+!!! tip "localhost vs server IP"
+    If you are running the server directly on your local machine (not in a container or VM), you can use `http://localhost/example` as the `exampleUrl`. In all other cases — including LXD/LXC containers, VMs, and remote servers — use the actual IP address. Using `localhost` in those environments causes the document server to generate malformed callback URLs.
+
+**Get the JWT secret:**
+
+=== "deb install (Ubuntu)"
+    The installer generates a JWT secret automatically. Look it up with:
+    ```bash
+    sudo grep -A1 '"browser"' /etc/euro-office/documentserver/local.json | grep '"string"'
+    ```
+
+=== "rpm install (Fedora)"
+    Use the secret you set manually in Step 9 of the Fedora installation guide.
 
 Then restart the example service:
 
@@ -65,7 +75,7 @@ listen [::]:<port> default_server;
 **2. `exampleUrl`** — update `/etc/euro-office/documentserver-example/local.json`:
 
 ```json
-"exampleUrl": "http://localhost:<port>/example/"
+"exampleUrl": "http://YOUR_SERVER_IP:<port>/example"
 ```
 
 Then reload nginx and restart the example:
