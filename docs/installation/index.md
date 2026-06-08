@@ -18,7 +18,7 @@ Euro-Office Document Server can be installed in several ways depending on your e
 
     ---
 
-    Run the official container image. Recommended for production deployments.
+    Run the official container image. Quickest way to get started.
 
     [:octicons-arrow-right-24: Docker installation](docker.md)
 

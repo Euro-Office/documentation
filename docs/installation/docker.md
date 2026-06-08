@@ -1,46 +1,112 @@
-# Docker
+# Installing Euro-Office via Docker
 
-The recommended way to run {{ brand.name }} in production is via the official
-Docker image, mounted with persistent volumes and fronted by a reverse proxy
-that terminates TLS.
+The quickest way to run Euro-Office Document Server is via the official Docker image.
 
-## Pull and run
+## Prerequisites
+
+- Docker Engine 20.10 or later
+- 5 GB disk space for the image
+- 4 GB RAM minimum
+
+## Quick start
 
 ```bash
-docker run -d --name {{ brand.product_slug }} \
-    --restart=always \
-    -p 80:80 \
-    -e JWT_ENABLED=true \
-    -e EXAMPLE_ENABLED=true
-    -e JWT_SECRET=my_personal_secret \
-    {{ brand.image }}
+docker run -d \
+  --name euro-office \
+  --restart=unless-stopped \
+  -p 80:80 \
+  -e JWT_ENABLED=true \
+  -e JWT_SECRET=your-secret \
+  ghcr.io/euro-office/documentserver:latest
 ```
 
-Key flags:
+The server is ready when the health check returns `true`:
 
-- `JWT_SECRET` — the shared secret used by your DMS to sign requests. Store it somewhere durable.
-- `EXAMPLE_ENABLED` — enables the example app for trying out the editor without connecting to a DMS. Don't enable in production.
+```bash
+curl http://localhost/healthcheck
+```
 
 ## Image tags
 
 | Tag | Use |
 |---|---|
-| `latest` | Most recent release. Pin in production. |
-| `X.Y.Z` | Specific version. |
-| `develop` | Bleeding-edge builds from `main`. Not for production. |
+| `latest` | Most recent release — use in production |
+| `nightly` | Nightly builds from `main` — not for production |
+| `latest-dev` | Development image with build tools included |
 
-## TLS
+Pin to a specific version in production:
 
-Terminate TLS in front of the container with a reverse proxy such as nginx
-or Caddy.
+```bash
+ghcr.io/euro-office/documentserver:9.3.1
+```
 
-## Configuration
+## Verify with the example app
 
-The container accepts configuration via environment variables or
-by mounting a `local.json` into `/etc/{{ brand.product_slug }}/documentserver/local.json`.
+To test the editor in a browser, enable the built-in example app:
 
-## Source
+```bash
+docker run -d \
+  --name euro-office \
+  --restart=unless-stopped \
+  -p 8080:80 \
+  -e JWT_ENABLED=true \
+  -e JWT_SECRET=your-secret \
+  -e EXAMPLE_ENABLED=true \
+  ghcr.io/euro-office/documentserver:latest
+```
 
-The Docker image is built from `DocumentServer/build/` in the
-[DocumentServer repository]({{ brand.repo }}/DocumentServer). To build it
-yourself, see [building from source](../development/building.md).
+Then open `http://localhost:8080/example/` in your browser.
+
+!!! warning
+    Disable `EXAMPLE_ENABLED` in production. The example app has no access control.
+
+## Persistent data
+
+By default, documents and configuration are lost when the container is removed. Mount volumes to persist them:
+
+```bash
+docker run -d \
+  --name euro-office \
+  --restart=unless-stopped \
+  -p 80:80 \
+  -e JWT_ENABLED=true \
+  -e JWT_SECRET=your-secret \
+  -v /path/to/data:/var/lib/euro-office/documentserver \
+  -v /path/to/logs:/var/log/euro-office/documentserver \
+  -v /path/to/config:/etc/euro-office/documentserver \
+  ghcr.io/euro-office/documentserver:latest
+```
+
+## Environment variables
+
+| Variable | Default | Description |
+|---|---|---|
+| `JWT_ENABLED` | `true` | Enable JWT authentication |
+| `JWT_SECRET` | — | Shared secret — set this in production |
+| `JWT_HEADER` | `Authorization` | HTTP header carrying the JWT |
+| `EXAMPLE_ENABLED` | `false` | Enable the built-in example app |
+| `WOPI_ENABLED` | `false` | Enable WOPI protocol support |
+| `ALLOW_PRIVATE_IP_ADDRESS` | `false` | Allow document server to fetch from private IPs |
+| `NGINX_WORKER_PROCESSES` | `1` | Number of nginx worker processes |
+| `GENERATE_FONTS` | `true` | Regenerate font cache on startup |
+| `DB_HOST` | `localhost` | PostgreSQL host (for external DB) |
+| `DB_NAME` | `eurooffice` | PostgreSQL database name |
+| `DB_USER` | `eurooffice` | PostgreSQL user |
+| `REDIS_SERVER_HOST` | `localhost` | Redis host (for external Redis) |
+| `AMQP_HOST` | `localhost` | RabbitMQ host (for external RabbitMQ) |
+
+## Updating
+
+```bash
+docker pull ghcr.io/euro-office/documentserver:latest
+docker stop euro-office && docker rm euro-office
+# re-run with the same docker run command
+```
+
+## Uninstalling
+
+```bash
+docker stop euro-office
+docker rm euro-office
+docker rmi ghcr.io/euro-office/documentserver:latest
+```
