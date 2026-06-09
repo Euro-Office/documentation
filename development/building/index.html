@@ -264,7 +264,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../installation/docker/" class="md-tabs__link">
+        <a href="../../installation/" class="md-tabs__link">
           
   
     
@@ -534,6 +534,18 @@
     
       
         
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
       
     
     
@@ -550,16 +562,24 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-            
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../installation/" class="md-nav__link ">
+              
   
   <span class="md-ellipsis">
     Installation
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
@@ -567,6 +587,71 @@
             Installation
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/ubuntu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ubuntu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/debian/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debian
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/fedora/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fedora
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -580,6 +665,27 @@
   
   <span class="md-ellipsis">
     Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/example/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Verify with Example App
   </span>
   
 
@@ -795,6 +901,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clone-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clone the repository
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#build-the-docker-image" class="md-nav__link">
     <span class="md-ellipsis">
       Build the Docker image
@@ -804,9 +928,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pin-a-version" class="md-nav__link">
+  <a href="#run-and-verify-the-image" class="md-nav__link">
     <span class="md-ellipsis">
-      Pin a version
+      Run and verify the image
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-a-branded-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build a branded image
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build targets
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#override-the-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Override the version
     </span>
   </a>
   
@@ -819,14 +970,53 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Build distribution packages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#override-version-and-build-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      Override version and build number
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
+  <a href="#troubleshooting" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisites
+      Troubleshooting
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cache-layer-lock-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cache layer lock errors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#broken-build-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      Broken build cache
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -894,6 +1084,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clone-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clone the repository
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#build-the-docker-image" class="md-nav__link">
     <span class="md-ellipsis">
       Build the Docker image
@@ -903,9 +1111,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pin-a-version" class="md-nav__link">
+  <a href="#run-and-verify-the-image" class="md-nav__link">
     <span class="md-ellipsis">
-      Pin a version
+      Run and verify the image
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-a-branded-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build a branded image
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build targets
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#override-the-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Override the version
     </span>
   </a>
   
@@ -918,14 +1153,53 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Build distribution packages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#override-version-and-build-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      Override version and build number
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
+  <a href="#troubleshooting" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisites
+      Troubleshooting
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cache-layer-lock-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cache layer lock errors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#broken-build-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      Broken build cache
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -961,33 +1235,266 @@
 
 
 <h1 id="building-from-source">Building from source<a class="headerlink" href="#building-from-source" title="Permanent link">&para;</a></h1>
-<p>Euro-Office builds entirely inside Docker via <code>docker buildx bake</code>, so
-the only host requirements are Docker + buildx and Git.</p>
-<h2 id="build-the-docker-image">Build the Docker image<a class="headerlink" href="#build-the-docker-image" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>DocumentServer/build
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>docker<span class="w"> </span>buildx<span class="w"> </span>bake
-</span></code></pre></div>
-<p>This produces the same image published as <code>ghcr.io/euro-office/documentserver</code>.</p>
-<h2 id="pin-a-version">Pin a version<a class="headerlink" href="#pin-a-version" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nv">PRODUCT_VERSION</span><span class="o">=</span><span class="m">8</span>.1.0<span class="w"> </span>docker<span class="w"> </span>buildx<span class="w"> </span>bake
-</span></code></pre></div>
-<p><code>PRODUCT_VERSION</code> is stamped into the image and surfaced via <code>/healthcheck</code>.</p>
-<h2 id="build-distribution-packages">Build distribution packages<a class="headerlink" href="#build-distribution-packages" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>buildx<span class="w"> </span>bake<span class="w"> </span>packages
-</span></code></pre></div>
-<p>Produces <code>.deb</code> and <code>.rpm</code> artifacts under <code>out/</code>. See
-<a href="https://github.com/Euro-Office/DocumentServer/blob/main/deb-plan.md">packaging plan</a> for
-the layout these packages target.</p>
+<p>Euro-Office builds entirely inside Docker via <code>docker buildx bake</code>. The only
+host requirements are Docker with the buildx container driver, and Git with SSH
+access to the repositories.</p>
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
-<p>The full prerequisite checklist (Docker user-without-root, buildx container
-driver, Git SSH keys) is documented in
-<a href="https://github.com/Euro-Office/DocumentServer/blob/main/build/BUILD_REQUISITES.md"><code>DocumentServer/build/BUILD_REQUISITES.md</code></a>.
-That file is the current source of truth.</p>
+<p>Before building for the first time, complete the one-time setup described in
+<a href="https://github.com/Euro-Office/DocumentServer/blob/main/build/BUILD_REQUISITES.md"><code>build/BUILD_REQUISITES.md</code></a>:</p>
+<ul>
+<li>Docker CE installed (not <code>podman</code> — RHEL-based systems default to podman)</li>
+<li>Your build user added to the <code>docker</code> group and re-logged in</li>
+<li>
+<p>A buildx container driver created and bootstrapped:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>buildx<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>--name<span class="w"> </span>container-builder<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>--driver<span class="w"> </span>docker-container<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span>--use
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>docker<span class="w"> </span>buildx<span class="w"> </span>inspect<span class="w"> </span>--bootstrap
+</span></code></pre></div>
+</li>
+<li>
+<p>SSH key added to your GitHub profile (for submodule access)</p>
+</li>
+</ul>
+<h2 id="clone-the-repository">Clone the repository<a class="headerlink" href="#clone-the-repository" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>--recurse-submodules<span class="w"> </span>git@github.com:Euro-Office/DocumentServer.git
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>DocumentServer
+</span></code></pre></div>
+<p>If you already cloned without <code>--recurse-submodules</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
+</span></code></pre></div>
+<h2 id="build-the-docker-image">Build the Docker image<a class="headerlink" href="#build-the-docker-image" title="Permanent link">&para;</a></h2>
+<p>All build commands run from the <code>build/</code> subdirectory:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>DocumentServer/build
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nv">BUILDX_BAKE_ENTITLEMENTS_FS</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>docker<span class="w"> </span>buildx<span class="w"> </span>bake<span class="w"> </span>--allow<span class="o">=</span>fs.read<span class="o">=</span>..<span class="w"> </span>--load
+</span></code></pre></div>
+<p>This builds the <code>standalone</code> target (the default group) and loads the resulting
+image into your local Docker daemon as <code>ghcr.io/euro-office/documentserver:latest</code>.</p>
+<p><strong>Why these flags:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BUILDX_BAKE_ENTITLEMENTS_FS=0</code></td>
+<td>Newer BuildKit versions gate filesystem access behind entitlement checks. This disables the check since the access is explicitly granted below.</td>
+</tr>
+<tr>
+<td><code>--allow=fs.read=..</code></td>
+<td>The build reads source files from the parent directory (<code>context = ".."</code> in <code>docker-bake.hcl</code>). BuildKit requires explicit permission for this.</td>
+</tr>
+<tr>
+<td><code>--load</code></td>
+<td>Imports the finished image into the local Docker daemon. Without this flag the image is built but not accessible via <code>docker run</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>Verify the image was created:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>images<span class="w"> </span>ghcr.io/euro-office/documentserver
+</span></code></pre></div>
+<h2 id="run-and-verify-the-image">Run and verify the image<a class="headerlink" href="#run-and-verify-the-image" title="Permanent link">&para;</a></h2>
+<p>Start the locally built image:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>--name<span class="w"> </span>euro-office-dev<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>--restart<span class="o">=</span>unless-stopped<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>-p<span class="w"> </span><span class="m">8080</span>:80<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">JWT_ENABLED</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">JWT_SECRET</span><span class="o">=</span>dev-secret<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span>ghcr.io/euro-office/documentserver:latest
+</span></code></pre></div>
+<p>Wait for the container to finish initialising, then check the health endpoint:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>curl<span class="w"> </span>http://localhost:8080/healthcheck
+</span></code></pre></div>
+<p>Expected output: <code>true</code></p>
+<p>To open the built-in example app in a browser:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span>--name<span class="w"> </span>euro-office-dev<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span>--restart<span class="o">=</span>unless-stopped<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span>-p<span class="w"> </span><span class="m">8080</span>:80<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">JWT_ENABLED</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">JWT_SECRET</span><span class="o">=</span>dev-secret<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">EXAMPLE_ENABLED</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">  </span>ghcr.io/euro-office/documentserver:latest
+</span></code></pre></div>
+<p>Then open <code>http://localhost:8080/example/</code> in your browser.</p>
+<p>Stop and remove the container when done:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>docker<span class="w"> </span>stop<span class="w"> </span>euro-office-dev<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span>rm<span class="w"> </span>euro-office-dev
+</span></code></pre></div>
+<h2 id="build-a-branded-image">Build a branded image<a class="headerlink" href="#build-a-branded-image" title="Permanent link">&para;</a></h2>
+<p>The default build produces a Euro-Office image. To build for a different brand
+(e.g. Nextcloud Office), include the brand-specific HCL file alongside the main
+bake file:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">cd</span><span class="w"> </span>DocumentServer/build
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nv">BUILDX_BAKE_ENTITLEMENTS_FS</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>docker<span class="w"> </span>buildx<span class="w"> </span>bake<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span>-f<span class="w"> </span>docker-bake.hcl<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span>-f<span class="w"> </span>brands/nextcloud-office-brand/brand-server.hcl<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span>--allow<span class="o">=</span>fs.read<span class="o">=</span>..<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">  </span>--allow<span class="o">=</span><span class="nv">fs</span><span class="o">=</span>./brands/nextcloud-office-brand/generated<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">  </span>--load
+</span></code></pre></div>
+<p>The additional <code>--allow=fs=./brands/nextcloud-office-brand/generated</code> flag grants
+BuildKit write access to the directory where the brand asset generation step
+exports its output.</p>
+<p><strong>What changes in a branded build:</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Default (Euro-Office)</th>
+<th>Branded (Nextcloud Office)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image tag</td>
+<td><code>ghcr.io/euro-office/documentserver:latest</code></td>
+<td><code>ghcr.io/nextcloud-office/documentserver:latest</code></td>
+</tr>
+<tr>
+<td>Install path inside image</td>
+<td><code>/var/www/euro-office/</code></td>
+<td><code>/var/www/nextcloud-office/</code></td>
+</tr>
+<tr>
+<td><code>COMPANY_NAME</code> env var</td>
+<td><code>Euro-Office</code></td>
+<td><code>Nextcloud Office</code></td>
+</tr>
+<tr>
+<td>Visual assets</td>
+<td>Built-in defaults</td>
+<td>Generated from <code>brands/nextcloud-office-brand/svg/</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>How the brand asset pipeline works:</strong></p>
+<p>Including a brand HCL overrides the dummy <code>brand-icons</code> target in <code>docker-bake.hcl</code>
+with a real build step. That step runs <code>build-icons.bake.Dockerfile</code> — an Alpine
+container with <code>rsvg-convert</code> — which renders the five source SVGs into PNGs, ICOs,
+and correctly named SVG copies for each component (server admin panel, welcome page,
+example app). The generated files are written to
+<code>brands/nextcloud-office-brand/generated/</code> and then injected into the <code>server</code>,
+<code>example</code>, and <code>packages</code> build stages via <code>COPY --from=brand-icons</code>.</p>
+<p><strong>Customising the visual identity:</strong></p>
+<p>The visual output depends entirely on the five source SVGs in
+<code>brands/nextcloud-office-brand/svg/</code>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>svg/
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>  logo-dark.svg        # square app icon, dark theme
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>  logo-light.svg       # square app icon, light theme
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>  logo-large-dark.svg  # wide logo, dark theme
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>  logo-large-light.svg # wide logo, light theme
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>  splash.svg           # splash screen
+</span></code></pre></div>
+<p>Replace these files with your own artwork and rebuild. Everything in <code>generated/</code>
+is derived from them — do not edit the generated files directly.</p>
 <div class="admonition note">
-<p class="admonition-title">Coming soon</p>
-<p>Migration of the BUILD_REQUISITES content into this page, plus
-documentation for the <code>cluster</code> and <code>develop</code> bake groups.</p>
+<p class="admonition-title">Note</p>
+<p>The <code>nextcloud-office-brand</code> source SVGs currently contain the same artwork as
+the Euro-Office defaults. A branded build will compile and run correctly, but
+will look identical until different SVG files are placed in <code>svg/</code>.</p>
 </div>
+<h2 id="build-targets">Build targets<a class="headerlink" href="#build-targets" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Target / group</th>
+<th>Command</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>standalone</code> (default)</td>
+<td><code>docker buildx bake</code></td>
+<td><code>ghcr.io/euro-office/documentserver:latest</code></td>
+</tr>
+<tr>
+<td><code>develop</code></td>
+<td><code>docker buildx bake develop</code></td>
+<td><code>ghcr.io/euro-office/documentserver:latest-dev</code> — includes build tools</td>
+</tr>
+<tr>
+<td><code>packages</code></td>
+<td><code>docker buildx bake packages</code></td>
+<td><code>.deb</code> and <code>.rpm</code> files in <code>build/deploy/packages/</code></td>
+</tr>
+<tr>
+<td><code>cluster</code></td>
+<td><code>docker buildx bake cluster</code></td>
+<td>Orchestrated cluster images (<code>cluster-docs</code>, <code>cluster-example</code>, <code>cluster-utils</code>)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="override-the-version">Override the version<a class="headerlink" href="#override-the-version" title="Permanent link">&para;</a></h2>
+<p>The version is read from the <code>VERSION</code> file at the repository root. Override it at
+build time via environment variables:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nv">PRODUCT_VERSION</span><span class="o">=</span><span class="m">9</span>.3.1<span class="w"> </span><span class="nv">BUILD_NUMBER</span><span class="o">=</span><span class="m">42</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span><span class="nv">BUILDX_BAKE_ENTITLEMENTS_FS</span><span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span>docker<span class="w"> </span>buildx<span class="w"> </span>bake<span class="w"> </span>--allow<span class="o">=</span>fs.read<span class="o">=</span>..<span class="w"> </span>--load
+</span></code></pre></div>
+<p><code>BUILD_NUMBER</code> is appended to the version string (e.g. <code>9.3.1-42</code>). It defaults
+to <code>dev.1</code> when not set.</p>
+<h2 id="build-distribution-packages">Build distribution packages<a class="headerlink" href="#build-distribution-packages" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">cd</span><span class="w"> </span>DocumentServer/build
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nv">BUILDX_BAKE_ENTITLEMENTS_FS</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>docker<span class="w"> </span>buildx<span class="w"> </span>bake<span class="w"> </span>packages<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span>--allow<span class="o">=</span>fs.read<span class="o">=</span>..<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span>--allow<span class="o">=</span><span class="nv">fs</span><span class="o">=</span>./deploy/packages
+</span></code></pre></div>
+<p>Packages are written to <code>build/deploy/packages/</code>. Both <code>.deb</code> and <code>.rpm</code> are
+produced for each architecture in a single run:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>deploy/packages/
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>  euro-office-documentserver_9.3.1-dev.1_arm64.deb
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>  euro-office-documentserver-9.3.1-dev.1.aarch64.rpm
+</span></code></pre></div>
+<p>The <code>--allow=fs=./deploy/packages</code> flag grants BuildKit write access to that
+output directory.</p>
+<div class="admonition warning">
+<p class="admonition-title">Output directory is not cleared between runs</p>
+<p>The <code>deploy/packages/</code> directory accumulates packages across builds. Remove
+old packages before building if you want only the current run's output:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>rm<span class="w"> </span>-rf<span class="w"> </span>deploy/packages<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>deploy/packages
+</span></code></pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>packages</code> target builds the full source first (same pipeline as <code>standalone</code>)
+before producing the packages. Expect the same build time as a full image build
+on a cold cache.</p>
+</div>
+<h3 id="override-version-and-build-number">Override version and build number<a class="headerlink" href="#override-version-and-build-number" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nv">PRODUCT_VERSION</span><span class="o">=</span><span class="m">9</span>.3.1<span class="w"> </span><span class="nv">BUILD_NUMBER</span><span class="o">=</span><span class="m">42</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span><span class="nv">BUILDX_BAKE_ENTITLEMENTS_FS</span><span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">  </span>docker<span class="w"> </span>buildx<span class="w"> </span>bake<span class="w"> </span>packages<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">  </span>--allow<span class="o">=</span>fs.read<span class="o">=</span>..<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">  </span>--allow<span class="o">=</span><span class="nv">fs</span><span class="o">=</span>./deploy/packages
+</span></code></pre></div>
+<p>This produces <code>euro-office-documentserver_9.3.1-42_&lt;arch&gt;.deb</code> and the equivalent <code>.rpm</code>.</p>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="cache-layer-lock-errors">Cache layer lock errors<a class="headerlink" href="#cache-layer-lock-errors" title="Permanent link">&para;</a></h3>
+<p>When building with a warm cache, multiple targets may attempt to write the same
+cache layer in parallel, producing errors like:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>ERROR: (*service).Write failed: rpc error: code = Unavailable desc = ref layer-sha256:... locked
+</span></code></pre></div>
+<p>These are transient and BuildKit retries them automatically — the build completes
+successfully. If the errors cause an actual build failure, disable cache writes
+for that run:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nv">BUILDX_BAKE_ENTITLEMENTS_FS</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>docker<span class="w"> </span>buildx<span class="w"> </span>bake<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span>--allow<span class="o">=</span>fs.read<span class="o">=</span>..<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">  </span>--load<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">  </span>--set<span class="w"> </span><span class="s2">&quot;*.cache-to=&quot;</span>
+</span></code></pre></div>
+<h3 id="broken-build-cache">Broken build cache<a class="headerlink" href="#broken-build-cache" title="Permanent link">&para;</a></h3>
+<p>If a build stalls or fails with errors about missing paths inside the build cache
+(e.g. <code>cannot change to '/build-cache1/third_party/workdir/icu/icu'</code>), prune the
+BuildKit cache and retry:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>docker<span class="w"> </span>buildx<span class="w"> </span>prune<span class="w"> </span>-a
+</span></code></pre></div>
 
 
 
