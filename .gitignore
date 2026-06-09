@@ -3,3 +3,4 @@ site/
 __pycache__/
 *.pyc
 .DS_Store
+PLAN.md

@@ -98,10 +98,15 @@ nav:
       - introduction/components.md
       - introduction/licensing.md
   - Installation:
-      - installation/docker.md
+      - installation/index.md
+      - Ubuntu: installation/ubuntu.md
+      - Debian: installation/debian.md
+      - Fedora: installation/fedora.md
+      - Docker: installation/docker.md
+      - Verify with Example App: installation/example.md
   - Integration:
       - integration/nextcloud.md
   - Development:
       - development/setup.md
-      - development/building.md
+      - Building from source: development/building.md
       - development/contributing.md
