@@ -1,5 +1,7 @@
 # Euro-Office Documentation
 
+Our documentation is automatically deployed at https://euro-office.github.io/documentation/
+
 Source for the Euro-Office documentation site, built with
 [MkDocs](https://www.mkdocs.org/) and the
 [Material](https://squidfunk.github.io/mkdocs-material/) theme.
