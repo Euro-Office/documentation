@@ -26,4 +26,4 @@ Nextcloud app that connects to a running {{ brand.name }} document server.
 ## Source
 
 The Nextcloud integration app lives at
-[`{{ brand.repo }}/{{ brand.product_slug }}-nextcloud`](https://github.com/{{ brand.repo }}/{{ brand.product_slug }}-nextcloud).
+[`{{ brand.repo }}/{{ brand.product_slug }}-nextcloud`]({{ brand.repo }}/{{ brand.product_slug }}-nextcloud).
