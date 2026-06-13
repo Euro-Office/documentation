@@ -16,7 +16,7 @@ docker run -d \
   --restart=unless-stopped \
   -p 80:80 \
   -e JWT_ENABLED=true \
-  -e JWT_SECRET=your-secret \
+  -e JWT_SECRET=yoursecret \
   ghcr.io/euro-office/documentserver:latest
 ```
 
@@ -50,7 +50,7 @@ docker run -d \
   --restart=unless-stopped \
   -p 8080:80 \
   -e JWT_ENABLED=true \
-  -e JWT_SECRET=your-secret \
+  -e JWT_SECRET=yoursecret \
   -e EXAMPLE_ENABLED=true \
   ghcr.io/euro-office/documentserver:latest
 ```
