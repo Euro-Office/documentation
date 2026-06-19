@@ -15,23 +15,39 @@ It is not a standalone application; it requires a compatible storage backend to 
 
 <div class="grid cards" markdown>
 
--   :material-rocket-launch:{ .lg .middle } **Quickstart**
+-   :material-book-open-variant:{ .lg .middle } **Introduction**
 
     ---
 
-    Get {{ brand.name }} running and connected to your platform in minutes.
+    What {{ brand.name }} is and how its pieces fit together.
 
-    [:octicons-arrow-right-24: Install with Docker](installation/docker.md)
+    [:octicons-arrow-right-24: Overview](introduction/overview.md)
 
--   :material-package-down:{ .lg .middle } **Install**
+-   :material-package-down:{ .lg .middle } **Installation**
 
     ---
 
-    Docker, Ubuntu (deb), and Fedora (rpm) installation guides.
+    Production deployment via Docker, Ubuntu (deb), and Fedora (rpm).
 
     [:octicons-arrow-right-24: Installation guide](installation/index.md)
 
--   :material-code-tags:{ .lg .middle } **Develop**
+-   :material-cog:{ .lg .middle } **Configuration**
+
+    ---
+
+    Server settings, custom fonts, plugins, logging, and command-line tools.
+
+    [:octicons-arrow-right-24: Server configuration](configuration/server.md)
+
+-   :material-connection:{ .lg .middle } **Integration**
+
+    ---
+
+    Connecting {{ brand.name }} to Nextcloud and other DMS platforms.
+
+    [:octicons-arrow-right-24: Integration guide](integration/nextcloud.md)
+
+-   :material-code-tags:{ .lg .middle } **Development**
 
     ---
 
@@ -39,20 +55,4 @@ It is not a standalone application; it requires a compatible storage backend to 
 
     [:octicons-arrow-right-24: Developer setup](development/setup.md)
 
--   :material-hammer-wrench:{ .lg .middle } **Build**
-
-    ---
-
-    Build the Docker image and distribution packages from source.
-
-    [:octicons-arrow-right-24: Building from source](development/building.md)
-
 </div>
-
-## What's inside
-
-- **[Introduction](introduction/overview.md)** — what {{ brand.name }} is and how its pieces fit together.
-- **[Installation](installation/index.md)** — production deployment via Docker, Ubuntu (deb), and Fedora (rpm).
-- **[Configuration](configuration/fonts.md)** — customizing {{ brand.name }}, such as installing custom fonts.
-- **[Integration](integration/nextcloud.md)** — connecting {{ brand.name }} to Nextcloud and other DMS platforms.
-- **[Development](development/building.md)** — building {{ brand.name }} from source.
