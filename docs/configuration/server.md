@@ -95,7 +95,7 @@ docker run -d \
 | `JWT_SECRET_INBOX` / `JWT_SECRET_OUTBOX` | `JWT_SECRET` | Separate secrets per direction |
 | `JWT_HEADER` | `Authorization` | HTTP header carrying the token |
 | `JWT_IN_BODY` | `false` | Accept the token in the request body |
-| `DB_TYPE` | `postgres` | `postgres`, `mysql`, `mariadb`, `mssql`, or `oracle` |
+| `DB_TYPE` | `postgres` | Database engine. The standalone image supports `postgres` only; other engines require the cluster image |
 | `DB_HOST` | `localhost` | Database host |
 | `DB_PORT` | `5432` | Database port |
 | `DB_NAME` | `eurooffice` | Database name |
