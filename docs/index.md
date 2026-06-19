@@ -53,5 +53,6 @@ It is not a standalone application; it requires a compatible storage backend to 
 
 - **[Introduction](introduction/overview.md)** — what {{ brand.name }} is and how its pieces fit together.
 - **[Installation](installation/index.md)** — production deployment via Docker, Ubuntu (deb), and Fedora (rpm).
+- **[Configuration](configuration/fonts.md)** — customizing {{ brand.name }}, such as installing custom fonts.
 - **[Integration](integration/nextcloud.md)** — connecting {{ brand.name }} to Nextcloud and other DMS platforms.
 - **[Development](development/building.md)** — building {{ brand.name }} from source.
