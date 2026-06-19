@@ -79,6 +79,9 @@ docker run -d \
 
 ## Environment variables
 
+The most common variables are listed below. For the full set, including the
+`local.json` keys each one maps to, see [Server configuration](../configuration/server.md).
+
 | Variable | Default | Description |
 |---|---|---|
 | `JWT_ENABLED` | `true` | Enable JWT authentication |
