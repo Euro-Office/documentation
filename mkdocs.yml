@@ -107,6 +107,7 @@ nav:
   - Configuration:
       - Server configuration: configuration/server.md
       - Custom fonts: configuration/fonts.md
+      - Installing plugins: configuration/plugins.md
   - Integration:
       - integration/index.md
       - Nextcloud: integration/nextcloud.md
