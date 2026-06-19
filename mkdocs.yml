@@ -105,7 +105,9 @@ nav:
       - Docker: installation/docker.md
       - Verify with Example App: installation/example.md
   - Integration:
-      - integration/nextcloud.md
+      - integration/index.md
+      - Nextcloud: integration/nextcloud.md
+      - Plugins: integration/plugins.md
   - Development:
       - development/setup.md
       - Building from source: development/building.md
