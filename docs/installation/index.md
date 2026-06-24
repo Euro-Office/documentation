@@ -46,6 +46,10 @@ Once installed, use the built-in example app to confirm the editor works end-to-
 
 [:octicons-arrow-right-24: Testing with the example app](example.md)
 
+## Running behind a reverse proxy
+
+For production deployments you typically place the document server behind a reverse proxy that terminates TLS and forwards requests to it. The [document-server-proxy](https://github.com/Euro-Office/document-server-proxy) project provides a ready-made reverse proxy setup you can use as a starting point.
+
 ## Which method should I use?
 
 | | Docker | Ubuntu (deb) | Debian (deb) | Fedora (rpm) |
