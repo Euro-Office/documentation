@@ -2,6 +2,15 @@
 
 Euro-Office Document Server can be installed in several ways depending on your environment and requirements.
 
+## Supported platforms
+
+| Platform | Version | Package |
+|---|---|---|
+| Ubuntu | 24.04 LTS | `.deb` |
+| Debian | 12 (Bookworm) | `.deb` |
+| Fedora | 41+ (tested on 44) | `.rpm` |
+| Docker | — | Container image |
+
 ## Choose your installation method
 
 <div class="grid cards" markdown>
