@@ -16,7 +16,7 @@ docker run -d \
   --restart=unless-stopped \
   -p 80:80 \
   -e JWT_ENABLED=true \
-  -e JWT_SECRET=your-secret \
+  -e JWT_SECRET=at-least-32-chars-long-for-hs256 \
   ghcr.io/euro-office/documentserver:latest
 ```
 
@@ -50,7 +50,7 @@ docker run -d \
   --restart=unless-stopped \
   -p 8080:80 \
   -e JWT_ENABLED=true \
-  -e JWT_SECRET=your-secret \
+  -e JWT_SECRET=at-least-32-chars-long-for-hs256 \
   -e EXAMPLE_ENABLED=true \
   ghcr.io/euro-office/documentserver:latest
 ```
@@ -70,7 +70,7 @@ docker run -d \
   --restart=unless-stopped \
   -p 80:80 \
   -e JWT_ENABLED=true \
-  -e JWT_SECRET=your-secret \
+  -e JWT_SECRET=at-least-32-chars-long-for-hs256 \
   -v /path/to/data:/var/lib/euro-office/documentserver \
   -v /path/to/logs:/var/log/euro-office/documentserver \
   -v /path/to/config:/etc/euro-office/documentserver \

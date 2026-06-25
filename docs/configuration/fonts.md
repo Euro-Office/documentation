@@ -30,7 +30,7 @@ docker run -d \
   --restart=unless-stopped \
   -p 80:80 \
   -e JWT_ENABLED=true \
-  -e JWT_SECRET=your-secret \
+  -e JWT_SECRET=at-least-32-chars-long-for-hs256 \
   -v /path/on/your/host/fonts:/usr/share/fonts/custom \
   ghcr.io/euro-office/documentserver:latest
 ```

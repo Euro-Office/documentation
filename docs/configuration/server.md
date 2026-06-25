@@ -30,9 +30,9 @@ and point at an external PostgreSQL database:
   "services": {
     "CoAuthoring": {
       "secret": {
-        "inbox":  { "string": "your-secret" },
-        "outbox": { "string": "your-secret" },
-        "session": { "string": "your-secret" }
+        "inbox":  { "string": "at-least-32-chars-long-for-hs256" },
+        "outbox": { "string": "at-least-32-chars-long-for-hs256" },
+        "session": { "string": "at-least-32-chars-long-for-hs256" }
       },
       "sql": {
         "type": "postgres",
@@ -44,6 +44,15 @@ and point at an external PostgreSQL database:
     }
   }
 }
+```
+
+The JWT secret must be at least **32 characters** long. This is required by the
+HS256 signing algorithm used by the document server and the Nextcloud integration.
+A secret shorter than 32 characters will be rejected when signing or verifying
+tokens. Generate a suitable secret with:
+
+```bash
+openssl rand -hex 32
 ```
 
 Restart the server to apply changes:
@@ -77,7 +86,7 @@ docker run -d \
   --name euro-office \
   --restart=unless-stopped \
   -p 80:80 \
-  -e JWT_SECRET=your-secret \
+  -e JWT_SECRET=at-least-32-chars-long-for-hs256 \
   -e DB_TYPE=postgres \
   -e DB_HOST=db.internal \
   -e DB_NAME=eurooffice \
@@ -119,3 +128,12 @@ docker run -d \
     stored under `/var/www/euro-office/Data/.private/`. Mount the `Data`
     directory as a volume to keep it stable across container restarts, or set
     `JWT_SECRET` explicitly.
+
+!!! warning "JWT secret length"
+    When using the Nextcloud integration, the JWT secret must be at least
+    **32 characters**. A shorter secret will cause token generation to fail with
+    "JWT secret key is too short". Generate a suitable secret with:
+
+    ```bash
+    openssl rand -hex 32
+    ```

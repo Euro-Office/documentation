@@ -73,7 +73,7 @@ docker run -d \
   --restart=unless-stopped \
   -p 8080:80 \
   -e JWT_ENABLED=true \
-  -e JWT_SECRET=dev-secret \
+  -e JWT_SECRET=at-least-32-chars-long-for-hs256 \
   ghcr.io/euro-office/documentserver:latest
 ```
 
@@ -93,7 +93,7 @@ docker run -d \
   --restart=unless-stopped \
   -p 8080:80 \
   -e JWT_ENABLED=true \
-  -e JWT_SECRET=dev-secret \
+  -e JWT_SECRET=at-least-32-chars-long-for-hs256 \
   -e EXAMPLE_ENABLED=true \
   ghcr.io/euro-office/documentserver:latest
 ```

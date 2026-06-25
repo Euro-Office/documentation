@@ -45,7 +45,7 @@ sudo documentserver-configure.sh \
   --databasename eurooffice \
   --databaseuser eurooffice \
   --databasepassword your-password \
-  --jwtsecret your-secret
+  --jwtsecret at-least-32-chars-long-for-hs256
 ```
 
 Run `documentserver-configure.sh --help` to see all options. The package
@@ -60,7 +60,7 @@ sudo documentserver-letsencrypt.sh admin@example.com docs.example.com
 **Rotate the secure-link secret** — omit the value to generate a random one:
 
 ```bash
-sudo documentserver-update-securelink.sh --secure_link_secret your-secret
+sudo documentserver-update-securelink.sh --secure_link_secret a-random-secret-for-nginx-secure-link
 ```
 
 **Drain before maintenance** — stop accepting new editing sessions before restarting:
