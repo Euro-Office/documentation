@@ -2,70 +2,90 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://docs.euro-office.com/</loc>
-         <lastmod>2026-06-19</lastmod>
+         <lastmod>2026-06-26</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.euro-office.com/configuration/commands/</loc>
+         <lastmod>2026-06-26</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.euro-office.com/configuration/fonts/</loc>
+         <lastmod>2026-06-26</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.euro-office.com/configuration/logging/</loc>
+         <lastmod>2026-06-26</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.euro-office.com/configuration/plugins/</loc>
+         <lastmod>2026-06-26</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.euro-office.com/configuration/server/</loc>
+         <lastmod>2026-06-26</lastmod>
     </url>
     <url>
          <loc>https://docs.euro-office.com/development/building/</loc>
-         <lastmod>2026-06-19</lastmod>
+         <lastmod>2026-06-26</lastmod>
     </url>
     <url>
          <loc>https://docs.euro-office.com/development/contributing/</loc>
-         <lastmod>2026-06-19</lastmod>
+         <lastmod>2026-06-26</lastmod>
     </url>
     <url>
          <loc>https://docs.euro-office.com/development/setup/</loc>
-         <lastmod>2026-06-19</lastmod>
+         <lastmod>2026-06-26</lastmod>
     </url>
     <url>
          <loc>https://docs.euro-office.com/installation/</loc>
-         <lastmod>2026-06-19</lastmod>
+         <lastmod>2026-06-26</lastmod>
     </url>
     <url>
          <loc>https://docs.euro-office.com/installation/debian/</loc>
-         <lastmod>2026-06-19</lastmod>
+         <lastmod>2026-06-26</lastmod>
     </url>
     <url>
          <loc>https://docs.euro-office.com/installation/docker/</loc>
-         <lastmod>2026-06-19</lastmod>
+         <lastmod>2026-06-26</lastmod>
     </url>
     <url>
          <loc>https://docs.euro-office.com/installation/example/</loc>
-         <lastmod>2026-06-19</lastmod>
+         <lastmod>2026-06-26</lastmod>
     </url>
     <url>
          <loc>https://docs.euro-office.com/installation/fedora/</loc>
-         <lastmod>2026-06-19</lastmod>
+         <lastmod>2026-06-26</lastmod>
     </url>
     <url>
          <loc>https://docs.euro-office.com/installation/ubuntu/</loc>
-         <lastmod>2026-06-19</lastmod>
+         <lastmod>2026-06-26</lastmod>
     </url>
     <url>
          <loc>https://docs.euro-office.com/integration/</loc>
-         <lastmod>2026-06-19</lastmod>
+         <lastmod>2026-06-26</lastmod>
     </url>
     <url>
          <loc>https://docs.euro-office.com/integration/nextcloud/</loc>
-         <lastmod>2026-06-19</lastmod>
+         <lastmod>2026-06-26</lastmod>
     </url>
     <url>
          <loc>https://docs.euro-office.com/integration/plugins/</loc>
-         <lastmod>2026-06-19</lastmod>
+         <lastmod>2026-06-26</lastmod>
     </url>
     <url>
          <loc>https://docs.euro-office.com/introduction/architecture/</loc>
-         <lastmod>2026-06-19</lastmod>
+         <lastmod>2026-06-26</lastmod>
     </url>
     <url>
          <loc>https://docs.euro-office.com/introduction/components/</loc>
-         <lastmod>2026-06-19</lastmod>
+         <lastmod>2026-06-26</lastmod>
     </url>
     <url>
          <loc>https://docs.euro-office.com/introduction/licensing/</loc>
-         <lastmod>2026-06-19</lastmod>
+         <lastmod>2026-06-26</lastmod>
     </url>
     <url>
          <loc>https://docs.euro-office.com/introduction/overview/</loc>
-         <lastmod>2026-06-19</lastmod>
+         <lastmod>2026-06-26</lastmod>
     </url>
 </urlset>

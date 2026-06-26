@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://docs.euro-office.com/introduction/components/">
+        <link rel="canonical" href="https://docs.euro-office.com/configuration/commands/">
       
       
-        <link rel="prev" href="../architecture/">
+        <link rel="prev" href="../logging/">
       
       
-        <link rel="next" href="../licensing/">
+        <link rel="next" href="../../integration/">
       
       
       <link rel="icon" href="../../assets/favicon.svg">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Components - Euro-Office</title>
+        <title>Command-line tools - Euro-Office</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#components" class="md-skip">
+        <a href="#command-line-tools" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Components
+              Command-line tools
             
           </span>
         </div>
@@ -240,13 +240,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../overview/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../introduction/overview/" class="md-tabs__link">
           
   
     
@@ -282,11 +280,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../configuration/server/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../server/" class="md-tabs__link">
           
   
     
@@ -407,10 +407,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -425,22 +423,19 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -451,7 +446,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Introduction
@@ -465,7 +460,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../overview/" class="md-nav__link">
+      <a href="../../introduction/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -486,7 +481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../architecture/" class="md-nav__link">
+      <a href="../../introduction/architecture/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -504,30 +499,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Components
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../introduction/components/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -536,44 +511,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-navigate-the-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      How to navigate the source
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#suggested-reading-order" class="md-nav__link">
-    <span class="md-ellipsis">
-      Suggested reading order
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -586,7 +523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../licensing/" class="md-nav__link">
+      <a href="../../introduction/licensing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -789,8 +726,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -807,19 +746,22 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -830,7 +772,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Configuration
@@ -844,7 +786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configuration/server/" class="md-nav__link">
+      <a href="../server/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -865,7 +807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configuration/fonts/" class="md-nav__link">
+      <a href="../fonts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -886,7 +828,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configuration/plugins/" class="md-nav__link">
+      <a href="../plugins/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -907,7 +849,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configuration/logging/" class="md-nav__link">
+      <a href="../logging/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -925,10 +867,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../configuration/commands/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Command-line tools
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -937,6 +899,44 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#available-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Available commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common tasks
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1203,18 +1203,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-to-navigate-the-source" class="md-nav__link">
+  <a href="#available-commands" class="md-nav__link">
     <span class="md-ellipsis">
-      How to navigate the source
+      Available commands
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#suggested-reading-order" class="md-nav__link">
+  <a href="#common-tasks" class="md-nav__link">
     <span class="md-ellipsis">
-      Suggested reading order
+      Common tasks
     </span>
   </a>
   
@@ -1235,7 +1235,7 @@
                   
 
   
-    <a href="https://github.com/Euro-Office/documentation/edit/main/docs/introduction/components.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/Euro-Office/documentation/edit/main/docs/configuration/commands.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1244,88 +1244,93 @@
     
       
     
-    <a href="https://github.com/Euro-Office/documentation/raw/main/docs/introduction/components.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/Euro-Office/documentation/raw/main/docs/configuration/commands.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="components">Components<a class="headerlink" href="#components" title="Permanent link">&para;</a></h1>
-<p>Euro-Office is composed of several independent repositories. Each is built
-and versioned separately; the top-level <code>DocumentServer</code> repository ties them
-together via git submodules.</p>
+<h1 id="command-line-tools">Command-line Tools<a class="headerlink" href="#command-line-tools" title="Permanent link">&para;</a></h1>
+<p>Euro-Office Document Server ships a set of <code>documentserver-*</code> helper scripts for
+administration. On a package install they are on the <code>PATH</code> (in <code>/usr/bin</code>) and
+run as root:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>documentserver-jwt-status.sh
+</span></code></pre></div>
+<p>In Docker, run them inside the container:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>euro-office<span class="w"> </span>documentserver-jwt-status.sh
+</span></code></pre></div>
+<h2 id="available-commands">Available commands<a class="headerlink" href="#available-commands" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Repository</th>
+<th>Command</th>
 <th>Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>server</code></td>
-<td>Node.js backend: DocService, FileConverter, AdminPanel, Metrics.</td>
+<td><code>documentserver-configure.sh</code></td>
+<td>Configure the database, message broker, Redis, JWT, and port. Package install only</td>
 </tr>
 <tr>
-<td><code>web-apps</code></td>
-<td>Browser-based editors for documents, spreadsheets, presentations, PDFs, Visio.</td>
+<td><code>documentserver-jwt-status.sh</code></td>
+<td>Print the current JWT enabled state, secret, and header</td>
 </tr>
 <tr>
-<td><code>sdkjs</code></td>
-<td>JavaScript SDK implementing the Office Open XML document models.</td>
+<td><code>documentserver-generate-allfonts.sh</code></td>
+<td>Regenerate the font cache. See <a href="../fonts/">Custom fonts</a></td>
 </tr>
 <tr>
-<td><code>core</code></td>
-<td>C++ rendering and conversion engine.</td>
+<td><code>documentserver-pluginsmanager.sh</code></td>
+<td>Install and update editor plugins. See <a href="../plugins/">Installing plugins</a></td>
 </tr>
 <tr>
-<td><code>core-fonts</code></td>
-<td>Font assets bundled with the platform.</td>
+<td><code>documentserver-flush-cache.sh</code></td>
+<td>Bump the cache tag so browsers reload editor assets</td>
 </tr>
 <tr>
-<td><code>DesktopEditors</code></td>
-<td>Native multi-format office suite for Windows, macOS, Linux.</td>
+<td><code>documentserver-update-securelink.sh</code></td>
+<td>Set or rotate the nginx secure-link secret</td>
 </tr>
 <tr>
-<td><code>docker-base</code></td>
-<td>Base Docker image with build dependencies.</td>
+<td><code>documentserver-static-gzip.sh</code></td>
+<td>Pre-compress static assets and enable nginx <code>gzip_static</code></td>
 </tr>
 <tr>
-<td><code>docker-ci</code></td>
-<td>CI/build automation layers on top of <code>docker-base</code>.</td>
+<td><code>documentserver-prepare4shutdown.sh</code></td>
+<td>Drain the server before a graceful shutdown or restart</td>
 </tr>
 <tr>
-<td><code>document-server-package</code></td>
-<td>M4-template-based DEB/RPM packaging.</td>
-</tr>
-<tr>
-<td><code>DocumentServer</code></td>
-<td>Top-level repository; aggregates the above as submodules.</td>
-</tr>
-<tr>
-<td><code>qa-acceptance</code></td>
-<td>Acceptance test suite for the platform.</td>
+<td><code>documentserver-letsencrypt.sh</code></td>
+<td>Obtain and configure a Let's Encrypt certificate</td>
 </tr>
 </tbody>
 </table>
-<h2 id="how-to-navigate-the-source">How to navigate the source<a class="headerlink" href="#how-to-navigate-the-source" title="Permanent link">&para;</a></h2>
-<p>If you are looking for…</p>
-<ul>
-<li><strong>Backend code (Node.js)</strong> → <code>server/</code></li>
-<li><strong>Editor UI</strong> → <code>web-apps/</code></li>
-<li><strong>Document model logic</strong> → <code>sdkjs/</code></li>
-<li><strong>Format converters / renderers (C++)</strong> → <code>core/</code></li>
-<li><strong>Build &amp; Docker image definitions</strong> → <code>DocumentServer/build/</code></li>
-<li><strong>Local development environment</strong> → <code>DocumentServer/develop/</code></li>
-<li><strong>Packaging (DEB/RPM)</strong> → <code>document-server-package/</code></li>
-</ul>
-<h2 id="suggested-reading-order">Suggested reading order<a class="headerlink" href="#suggested-reading-order" title="Permanent link">&para;</a></h2>
-<p>If you are new to Euro-Office, read in order:</p>
-<ol>
-<li><a href="../architecture/">Architecture</a> — how the components fit together at runtime.</li>
-<li><a href="../../installation/docker/">Installation</a> — production deployment paths in depth.</li>
-</ol>
+<h2 id="common-tasks">Common tasks<a class="headerlink" href="#common-tasks" title="Permanent link">&para;</a></h2>
+<p><strong>Check JWT configuration</strong> — confirm whether token validation is on and which secret is in use:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>documentserver-jwt-status.sh
+</span></code></pre></div>
+<p><strong>Configure connections</strong> (package install) — point the server at external services:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>documentserver-configure.sh<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>--databasetype<span class="w"> </span>postgres<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>--databasehost<span class="w"> </span>db.internal<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span>--databasename<span class="w"> </span>eurooffice<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span>--databaseuser<span class="w"> </span>eurooffice<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span>--databasepassword<span class="w"> </span>your-password<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span>--jwtsecret<span class="w"> </span>at-least-32-chars-long-for-hs256
+</span></code></pre></div>
+<p>Run <code>documentserver-configure.sh --help</code> to see all options. The package
+supports <code>postgres</code>, <code>mariadb</code>, and <code>mysql</code>.</p>
+<p><strong>Issue a TLS certificate</strong> — pass the contact email and domain:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>documentserver-letsencrypt.sh<span class="w"> </span>admin@example.com<span class="w"> </span>docs.example.com
+</span></code></pre></div>
+<p><strong>Rotate the secure-link secret</strong> — omit the value to generate a random one:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>documentserver-update-securelink.sh<span class="w"> </span>--secure_link_secret<span class="w"> </span>a-random-secret-for-nginx-secure-link
+</span></code></pre></div>
+<p><strong>Drain before maintenance</strong> — stop accepting new editing sessions before restarting:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>documentserver-prepare4shutdown.sh
+</span></code></pre></div>
 
 
 
@@ -1363,7 +1368,7 @@ together via git submodules.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../architecture/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Architecture">
+          <a href="../logging/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Logging">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1373,20 +1378,20 @@ together via git submodules.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Architecture
+                Logging
               </div>
             </div>
           </a>
         
         
           
-          <a href="../licensing/" class="md-footer__link md-footer__link--next" aria-label="Next: Licensing">
+          <a href="../../integration/" class="md-footer__link md-footer__link--next" aria-label="Next: Integration">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Licensing
+                Integration
               </div>
             </div>
             <div class="md-footer__button md-icon">
