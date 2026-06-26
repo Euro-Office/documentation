@@ -18,6 +18,7 @@ ENV_OVERRIDES = {
     "tagline": "BRAND_TAGLINE",
     "company": "BRAND_COMPANY",
     "product_slug": "BRAND_PRODUCT_SLUG",
+    "package_path_name": "BRAND_PACKAGE_PATH_NAME",
     "cli": "BRAND_CLI",
     "image": "BRAND_IMAGE",
     "url": "BRAND_URL",

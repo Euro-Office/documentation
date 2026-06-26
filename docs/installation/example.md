@@ -13,10 +13,10 @@ Expected output: `active`
 
 ## Step 2 — Configure the example app
 
-The example app needs to know its own URL so the document server can fetch and save files correctly. Edit `/etc/euro-office/documentserver-example/local.json`:
+The example app needs to know its own URL so the document server can fetch and save files correctly. Edit `/etc/{{ brand.package_path_name }}/documentserver-example/local.json`:
 
 ```bash
-sudo tee /etc/euro-office/documentserver-example/local.json > /dev/null << 'EOF'
+sudo tee /etc/{{ brand.package_path_name }}/documentserver-example/local.json > /dev/null << 'EOF'
 {
   "server": {
     "siteUrl": "/",
@@ -41,7 +41,7 @@ Replace `YOUR_SERVER_IP` with the server's IP address or hostname. Do not add a 
 === "deb install (Ubuntu)"
     The installer generates a JWT secret automatically. Look it up with:
     ```bash
-    sudo grep -A1 '"browser"' /etc/euro-office/documentserver/local.json | grep '"string"'
+    sudo grep -A1 '"browser"' /etc/{{ brand.package_path_name }}/documentserver/local.json | grep '"string"'
     ```
 
 === "rpm install (Fedora)"
@@ -65,14 +65,14 @@ You should see a file list. Click **Create** to open a blank document in the edi
 
 If nginx is configured to listen on a port other than 80, update two settings:
 
-**1. nginx listen port** — edit `/etc/euro-office/documentserver/nginx/ds.conf`:
+**1. nginx listen port** — edit `/etc/{{ brand.package_path_name }}/documentserver/nginx/ds.conf`:
 
 ```nginx
 listen 0.0.0.0:<port>;
 listen [::]:<port> default_server;
 ```
 
-**2. `exampleUrl`** — update `/etc/euro-office/documentserver-example/local.json`:
+**2. `exampleUrl`** — update `/etc/{{ brand.package_path_name }}/documentserver-example/local.json`:
 
 ```json
 "exampleUrl": "http://YOUR_SERVER_IP:<port>/example"

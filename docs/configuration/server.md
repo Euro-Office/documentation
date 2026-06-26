@@ -10,7 +10,7 @@ Both end up writing the same file: `local.json`.
 
 ## The configuration file
 
-Settings live in `/etc/euro-office/documentserver/`, loaded in this order, with
+Settings live in `/etc/{{ brand.package_path_name }}/documentserver/`, loaded in this order, with
 later files overriding earlier ones:
 
 ```
@@ -83,7 +83,7 @@ update the variable and recreate the container.
 
 ```bash
 docker run -d \
-  --name euro-office \
+  --name {{ brand.package_path_name }} \
   --restart=unless-stopped \
   -p 80:80 \
   -e JWT_SECRET=at-least-32-chars-long-for-hs256 \
@@ -125,7 +125,7 @@ docker run -d \
 
 !!! note "Persisting the JWT secret"
     If `JWT_SECRET` is not set, a random secret is generated on first start and
-    stored under `/var/www/euro-office/Data/.private/`. Mount the `Data`
+    stored under `/var/www/{{ brand.package_path_name }}/Data/.private/`. Mount the `Data`
     directory as a volume to keep it stable across container restarts, or set
     `JWT_SECRET` explicitly.
 

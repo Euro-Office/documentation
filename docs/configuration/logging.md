@@ -9,7 +9,7 @@ read the output from per-service log files.
 The level is set in the log4js config:
 
 ```
-/etc/euro-office/documentserver/log4js/production.json
+/etc/{{ brand.package_path_name }}/documentserver/log4js/production.json
 ```
 
 Change `categories.default.level` (default `WARN`) to one of the log4js levels,
@@ -42,7 +42,7 @@ recreate the container; the entrypoint writes it into `production.json`:
 
 ```bash
 docker run -d \
-  --name euro-office \
+  --name {{ brand.package_path_name }} \
   --restart=unless-stopped \
   -p 80:80 \
   -e DS_LOG_LEVEL=DEBUG \
@@ -55,7 +55,7 @@ docker run -d \
 
 ## Log files
 
-Logs are written per service under `/var/log/euro-office/documentserver/`:
+Logs are written per service under `/var/log/{{ brand.package_path_name }}/documentserver/`:
 
 | File | Component |
 |---|---|
@@ -71,9 +71,9 @@ The application logs are written to the files above inside the container, not to
 `docker logs`. Tail them directly:
 
 ```bash
-docker exec euro-office tail -f /var/log/euro-office/documentserver/docservice/out.log
+docker exec {{ brand.package_path_name }} tail -f /var/log/{{ brand.package_path_name }}/documentserver/docservice/out.log
 ```
 
 To keep logs on the host, mount the log directory as a volume
-(`-v /path/to/logs:/var/log/euro-office/documentserver`) as shown in the
+(`-v /path/to/logs:/var/log/{{ brand.package_path_name }}/documentserver`) as shown in the
 [Docker installation guide](../installation/docker.md#persistent-data).

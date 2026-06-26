@@ -26,7 +26,7 @@ Mount a host directory with your fonts into the container and let it regenerate 
 
 ```bash
 docker run -d \
-  --name euro-office \
+  --name {{ brand.package_path_name }} \
   --restart=unless-stopped \
   -p 80:80 \
   -e JWT_ENABLED=true \
@@ -38,5 +38,5 @@ docker run -d \
 Fonts are picked up automatically because `GENERATE_FONTS` is enabled by default. To add fonts to a running container, drop the files into the host directory and restart it:
 
 ```bash
-docker restart euro-office
+docker restart {{ brand.package_path_name }}
 ```

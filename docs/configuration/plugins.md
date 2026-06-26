@@ -7,7 +7,7 @@ applies to self-hosted Euro-Office installations.
 Plugins live in the `sdkjs-plugins` directory of the document server:
 
 ```
-/var/www/euro-office/documentserver/sdkjs-plugins/
+/var/www/{{ brand.package_path_name }}/documentserver/sdkjs-plugins/
 ```
 
 ## Finding plugins
@@ -36,7 +36,7 @@ check that the plugin supports your editor version.
     ```bash
     git clone --depth 1 https://github.com/ONLYOFFICE/onlyoffice.github.io
     sudo cp -r onlyoffice.github.io/sdkjs-plugins/content/wordscounter \
-      /var/www/euro-office/documentserver/sdkjs-plugins/
+      /var/www/{{ brand.package_path_name }}/documentserver/sdkjs-plugins/
     ```
 
     For a plugin distributed in its own repository, clone it directly into a
@@ -65,12 +65,12 @@ cp -r onlyoffice.github.io/sdkjs-plugins/content/wordscounter \
 
 ```bash
 docker run -d \
-  --name euro-office \
+  --name {{ brand.package_path_name }} \
   --restart=unless-stopped \
   -p 80:80 \
   -e JWT_ENABLED=true \
   -e JWT_SECRET=at-least-32-chars-long-for-hs256 \
-  -v /path/on/your/host/plugins/wordscounter:/var/www/euro-office/documentserver/sdkjs-plugins/wordscounter \
+  -v /path/on/your/host/plugins/wordscounter:/var/www/{{ brand.package_path_name }}/documentserver/sdkjs-plugins/wordscounter \
   ghcr.io/euro-office/documentserver:latest
 ```
 
@@ -79,7 +79,7 @@ mounting over the whole directory, which would hide the built-in plugins. After
 starting the container, register the plugin so the editors pick it up:
 
 ```bash
-docker exec euro-office documentserver-pluginsmanager.sh
+docker exec {{ brand.package_path_name }} documentserver-pluginsmanager.sh
 ```
 
 !!! tip
@@ -101,7 +101,7 @@ Remove the plugin's folder and re-register so the editors stop loading it.
 === "Package install"
 
     ```bash
-    sudo rm -rf /var/www/euro-office/documentserver/sdkjs-plugins/wordscounter
+    sudo rm -rf /var/www/{{ brand.package_path_name }}/documentserver/sdkjs-plugins/wordscounter
     sudo documentserver-pluginsmanager.sh
     ```
 

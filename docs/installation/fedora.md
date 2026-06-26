@@ -71,8 +71,8 @@ Download the latest RPM from [GitHub Releases](https://github.com/Euro-Office/Do
 
 ```bash
 # Replace <version> with your value, e.g. 9.3.1-rc.1
-wget "https://github.com/Euro-Office/DocumentServer/releases/download/v<version>/euro-office-documentserver-<version>.x86_64.rpm" \
-  -O /tmp/euro-office-documentserver.rpm
+wget "https://github.com/Euro-Office/DocumentServer/releases/download/v<version>/{{ brand.package_path_name }}-documentserver-<version>.x86_64.rpm" \
+  -O /tmp/{{ brand.package_path_name }}-documentserver.rpm
 ```
 
 **Available architectures:** `x86_64`, `aarch64`
@@ -82,7 +82,7 @@ wget "https://github.com/Euro-Office/DocumentServer/releases/download/v<version>
 The `msttcore-fonts` package is not available in Fedora's repositories. Install with `--nodeps` to skip that dependency:
 
 ```bash
-sudo rpm -ivh --nodeps /tmp/euro-office-documentserver.rpm
+sudo rpm -ivh --nodeps /tmp/{{ brand.package_path_name }}-documentserver.rpm
 ```
 
 ## Step 6 — Initialize the database schema
@@ -143,10 +143,10 @@ Without this step the editor will fail to load with a path error like `Cannot GE
 
 ## Step 9 — Configure JWT authentication
 
-The RPM installer does not generate a JWT configuration. Create `/etc/euro-office/documentserver/local.json` with a secret of your choice — all three entries must use the same value:
+The RPM installer does not generate a JWT configuration. Create `/etc/{{ brand.package_path_name }}/documentserver/local.json` with a secret of your choice — all three entries must use the same value:
 
 ```bash
-sudo tee /etc/euro-office/documentserver/local.json > /dev/null << 'EOF'
+sudo tee /etc/{{ brand.package_path_name }}/documentserver/local.json > /dev/null << 'EOF'
 {
   "services": {
     "CoAuthoring": {
@@ -214,16 +214,16 @@ To verify the editor works end-to-end in a browser, follow the [Example App guid
 Download the new release RPM and upgrade in place:
 
 ```bash
-wget "https://github.com/Euro-Office/DocumentServer/releases/download/v<new-version>/euro-office-documentserver-<new-version>.x86_64.rpm" \
-  -O /tmp/euro-office-documentserver.rpm
-sudo rpm -Uvh --nodeps /tmp/euro-office-documentserver.rpm
+wget "https://github.com/Euro-Office/DocumentServer/releases/download/v<new-version>/{{ brand.package_path_name }}-documentserver-<new-version>.x86_64.rpm" \
+  -O /tmp/{{ brand.package_path_name }}-documentserver.rpm
+sudo rpm -Uvh --nodeps /tmp/{{ brand.package_path_name }}-documentserver.rpm
 sudo /usr/bin/documentserver-flush-cache.sh
 ```
 
 ## Uninstalling
 
 ```bash
-sudo rpm -e euro-office-documentserver
+sudo rpm -e {{ brand.package_path_name }}-documentserver
 sudo -u postgres psql -c "DROP DATABASE ds;"
 sudo -u postgres psql -c "DROP USER ds;"
 ```

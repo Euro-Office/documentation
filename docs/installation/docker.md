@@ -12,7 +12,7 @@ The quickest way to run Euro-Office Document Server is via the official Docker i
 
 ```bash
 docker run -d \
-  --name euro-office \
+  --name {{ brand.package_path_name }} \
   --restart=unless-stopped \
   -p 80:80 \
   -e JWT_ENABLED=true \
@@ -46,7 +46,7 @@ To test the editor in a browser, enable the built-in example app:
 
 ```bash
 docker run -d \
-  --name euro-office \
+  --name {{ brand.package_path_name }} \
   --restart=unless-stopped \
   -p 8080:80 \
   -e JWT_ENABLED=true \
@@ -66,14 +66,14 @@ By default, documents and configuration are lost when the container is removed. 
 
 ```bash
 docker run -d \
-  --name euro-office \
+  --name {{ brand.package_path_name }} \
   --restart=unless-stopped \
   -p 80:80 \
   -e JWT_ENABLED=true \
   -e JWT_SECRET=at-least-32-chars-long-for-hs256 \
-  -v /path/to/data:/var/lib/euro-office/documentserver \
-  -v /path/to/logs:/var/log/euro-office/documentserver \
-  -v /path/to/config:/etc/euro-office/documentserver \
+  -v /path/to/data:/var/lib/{{ brand.package_path_name }}/documentserver \
+  -v /path/to/logs:/var/log/{{ brand.package_path_name }}/documentserver \
+  -v /path/to/config:/etc/{{ brand.package_path_name }}/documentserver \
   ghcr.io/euro-office/documentserver:latest
 ```
 
@@ -102,14 +102,14 @@ The most common variables are listed below. For the full set, including the
 
 ```bash
 docker pull ghcr.io/euro-office/documentserver:latest
-docker stop euro-office && docker rm euro-office
+docker stop {{ brand.package_path_name }} && docker rm {{ brand.package_path_name }}
 # re-run with the same docker run command
 ```
 
 ## Uninstalling
 
 ```bash
-docker stop euro-office
-docker rm euro-office
+docker stop {{ brand.package_path_name }}
+docker rm {{ brand.package_path_name }}
 docker rmi ghcr.io/euro-office/documentserver:latest
 ```

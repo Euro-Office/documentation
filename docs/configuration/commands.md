@@ -11,7 +11,7 @@ sudo documentserver-jwt-status.sh
 In Docker, run them inside the container:
 
 ```bash
-docker exec euro-office documentserver-jwt-status.sh
+docker exec {{ brand.package_path_name }} documentserver-jwt-status.sh
 ```
 
 ## Available commands

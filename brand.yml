@@ -4,7 +4,8 @@
 #   1. Edit the values below, OR
 #   2. Set the matching BRAND_* environment variables at build time:
 #        BRAND_NAME, BRAND_SHORT_NAME, BRAND_TAGLINE, BRAND_COMPANY,
-#        BRAND_PRODUCT_SLUG, BRAND_CLI, BRAND_URL, BRAND_REPO, BRAND_DOCS_URL
+#        BRAND_PRODUCT_SLUG, BRAND_PACKAGE_PATH_NAME, BRAND_CLI, BRAND_URL,
+#        BRAND_REPO, BRAND_DOCS_URL
 #   3. Replace docs/assets/logo.svg and docs/assets/favicon.svg with your own.
 #   4. Override theme colors via BRAND_PRIMARY_COLOR / BRAND_ACCENT_COLOR
 #      (any Material palette name: indigo, deep purple, teal, blue, etc.).
@@ -18,6 +19,10 @@ brand:
   tagline: Your sovereign office
   company: Euro-Office
   product_slug: eurooffice
+  # On-disk/package namespace used in install paths (/etc, /var/log, /var/www,
+  # /var/lib), the package/artifact name, and example container names.
+  # Branded builds differ here, e.g. nextcloud-office.
+  package_path_name: euro-office
   cli: eurooffice
   image: ghcr.io/euro-office/documentserver
   url: https://euro-office.com
