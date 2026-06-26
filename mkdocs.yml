@@ -116,5 +116,7 @@ nav:
       - Plugins: integration/plugins.md
   - Development:
       - development/setup.md
+      - Front hot-reload: development/hot-reload.md
       - Building from source: development/building.md
+      - Troubleshooting: development/troubleshooting.md
       - development/contributing.md
