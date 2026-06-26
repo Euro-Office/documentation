@@ -39,6 +39,7 @@ whitelabel-check: install  ## Build with example overrides and grep for brand le
 	BRAND_COMPANY='Acme Inc.' \
 	BRAND_CLI=acme \
 	BRAND_PRODUCT_SLUG=acme \
+	BRAND_PACKAGE_PATH_NAME=acme \
 	BRAND_IMAGE=acme/documentserver \
 	BRAND_URL=https://acme.example \
 	BRAND_REPO=https://github.com/acme \

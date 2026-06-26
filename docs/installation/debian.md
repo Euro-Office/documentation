@@ -62,8 +62,8 @@ Download the latest release from [GitHub Releases](https://github.com/Euro-Offic
 
 ```bash
 # Replace <version> and <arch> with your values, e.g. 9.3.1-rc.1 and amd64 or arm64
-wget "https://github.com/Euro-Office/DocumentServer/releases/download/v<version>/euro-office-documentserver_<version>_<arch>.deb" \
-  -O /tmp/euro-office-documentserver.deb
+wget "https://github.com/Euro-Office/DocumentServer/releases/download/v<version>/{{ brand.package_path_name }}-documentserver_<version>_<arch>.deb" \
+  -O /tmp/{{ brand.package_path_name }}-documentserver.deb
 ```
 
 **Available architectures:** `amd64`, `arm64`
@@ -71,7 +71,7 @@ wget "https://github.com/Euro-Office/DocumentServer/releases/download/v<version>
 ## Step 6 — Install the package
 
 ```bash
-sudo apt-get install -y /tmp/euro-office-documentserver.deb
+sudo apt-get install -y /tmp/{{ brand.package_path_name }}-documentserver.deb
 ```
 
 The installer generates fonts, WOPI keys, and JS caches. This takes a minute. A
@@ -115,15 +115,15 @@ To verify the editor works end-to-end in a browser, follow the [Example App guid
 Download the new release package and reinstall:
 
 ```bash
-wget "https://github.com/Euro-Office/DocumentServer/releases/download/v<new-version>/euro-office-documentserver_<new-version>_<arch>.deb" \
-  -O /tmp/euro-office-documentserver.deb
-sudo apt-get install -y /tmp/euro-office-documentserver.deb
+wget "https://github.com/Euro-Office/DocumentServer/releases/download/v<new-version>/{{ brand.package_path_name }}-documentserver_<new-version>_<arch>.deb" \
+  -O /tmp/{{ brand.package_path_name }}-documentserver.deb
+sudo apt-get install -y /tmp/{{ brand.package_path_name }}-documentserver.deb
 ```
 
 ## Uninstalling
 
 ```bash
-sudo apt-get remove --purge euro-office-documentserver
+sudo apt-get remove --purge {{ brand.package_path_name }}-documentserver
 sudo -u postgres psql -c "DROP DATABASE ds;"
 sudo -u postgres psql -c "DROP USER ds;"
 ```

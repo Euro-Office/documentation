@@ -104,6 +104,12 @@ nav:
       - Fedora: installation/fedora.md
       - Docker: installation/docker.md
       - Verify with Example App: installation/example.md
+  - Configuration:
+      - Server configuration: configuration/server.md
+      - Custom fonts: configuration/fonts.md
+      - Installing plugins: configuration/plugins.md
+      - Logging: configuration/logging.md
+      - Command-line tools: configuration/commands.md
   - Integration:
       - integration/index.md
       - Nextcloud: integration/nextcloud.md

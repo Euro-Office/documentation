@@ -2,7 +2,8 @@
 
 Plugins extend the {{ brand.name }} editors with additional panels, tools, and
 integrations. The plugins below are currently maintained and known to work with
-{{ brand.name }}.
+{{ brand.name }}. For how to install one on the server, see
+[Installing plugins](../configuration/plugins.md).
 
 !!! info "Plugin directory coming soon"
 

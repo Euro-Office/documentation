@@ -20,7 +20,7 @@ Nextcloud app that connects to a running {{ brand.name }} document server.
 
 1. In Nextcloud, go to **Settings** → **Administration** → **{{ brand.name }}**.
 2. Enter the URL of your {{ brand.name }} document server, including the protocol and port (e.g. `https://{{ brand.product_slug }}.example.com`).
-3. Enter the JWT secret you configured in your document server.
+3. Enter the JWT secret you configured in your document server. It must be at least **32 characters**. Generate one with `openssl rand -hex 32`.
 4. Click **Save**.
 
 ## Source

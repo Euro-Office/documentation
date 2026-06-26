@@ -2,6 +2,15 @@
 
 Euro-Office Document Server can be installed in several ways depending on your environment and requirements.
 
+## Supported platforms
+
+| Platform | Version | Package |
+|---|---|---|
+| Ubuntu | 24.04 LTS | `.deb` |
+| Debian | 12 (Bookworm) | `.deb` |
+| Fedora | 41+ (tested on 44) | `.rpm` |
+| Docker | — | Container image |
+
 ## Choose your installation method
 
 <div class="grid cards" markdown>
@@ -45,6 +54,10 @@ Euro-Office Document Server can be installed in several ways depending on your e
 Once installed, use the built-in example app to confirm the editor works end-to-end in a browser.
 
 [:octicons-arrow-right-24: Testing with the example app](example.md)
+
+## Running behind a reverse proxy
+
+For production deployments you typically place the document server behind a reverse proxy that terminates TLS and forwards requests to it. The [document-server-proxy](https://github.com/Euro-Office/document-server-proxy) project provides a ready-made reverse proxy setup you can use as a starting point.
 
 ## Which method should I use?
 
