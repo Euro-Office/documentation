@@ -103,7 +103,9 @@ docker run -d \
 | `JWT_SECRET` | random | Shared JWT secret (see note below) |
 | `JWT_SECRET_INBOX` / `JWT_SECRET_OUTBOX` | `JWT_SECRET` | Separate secrets per direction |
 | `JWT_HEADER` | `Authorization` | HTTP header carrying the token |
+| `JWT_HEADER_INBOX` / `JWT_HEADER_OUTBOX` | `JWT_HEADER` | Separate headers per direction |
 | `JWT_IN_BODY` | `false` | Accept the token in the request body |
+| `JWT_ENABLED_INBOX` / `JWT_ENABLED_OUTBOX` | `JWT_ENABLED` | Enable JWT per direction |
 | `DB_TYPE` | `postgres` | Database engine. The standalone image supports `postgres` only; other engines require the cluster image |
 | `DB_HOST` | `localhost` | Database host |
 | `DB_PORT` | `5432` | Database port |
@@ -119,9 +121,66 @@ docker run -d \
 | `WOPI_ENABLED` | `false` | Enable WOPI protocol support |
 | `PLUGINS_ENABLED` | `true` | Enable editor plugins |
 | `METRICS_ENABLED` | `false` | Send StatsD metrics |
+| `METRICS_HOST` | `localhost` | StatsD host |
+| `METRICS_PORT` | `8125` | StatsD port |
+| `METRICS_PREFIX` | `ds.` | StatsD metric name prefix |
 | `GENERATE_FONTS` | `true` | Regenerate the font cache on startup |
 | `ALLOW_PRIVATE_IP_ADDRESS` | `false` | Allow fetching documents from private IPs |
 | `NGINX_WORKER_PROCESSES` | `1` | Number of nginx worker processes |
+| `NGINX_CLIENT_MAX_BODY_SIZE` | `100m` | Nginx client max body size (upload limit for nginx) |
+| `NGINX_ACCESS_LOG` | `false` | Enable nginx access log |
+| `FILECONVERTER_MAX_DOWNLOAD_BYTES` | `524288000` | Max file download size for the FileConverter in bytes (default 500 MB) |
+| `FILECONVERTER_INPUT_LIMIT_UNCOMPRESSED` | `500MB` | Max uncompressed zip size for office files (docx, xlsx, pptx, vsdx) |
+| `MAX_FILE_SIZE` | `104857600` | Max temp file upload size in bytes (default 100 MB) |
+| `ALLOW_META_IP_ADDRESS` | `false` | Allow fetching documents from meta-private IPs (169.254.0.0/16) |
+| `USE_UNAUTHORIZED_STORAGE` | `false` | Allow fetching documents from HTTP (non-TLS) storage |
+| `SSL_VERIFY_CLIENT` | `off` | Enable SSL client certificate verification |
+| `ONLYOFFICE_HTTPS_HSTS_ENABLED` | `true` | Enable HSTS headers |
+| `ONLYOFFICE_HTTPS_HSTS_MAXAGE` | `31536000` | HSTS max-age in seconds |
+
+!!! tip "Size limits — what they mean for your users"
+    Each limit guards a different stage of the file lifecycle. Imagine a user tries to
+    open a **200 MB `.pptx`** file:
+
+    **1. Nginx accepts the upload** — `NGINX_CLIENT_MAX_BODY_SIZE` must be higher than
+    the file. Default is `100m`. With a 200 MB file the user gets
+    `413 Request Entity Too Large`. Set it to `250m`:
+
+    ```bash
+    -e NGINX_CLIENT_MAX_BODY_SIZE=250m
+    ```
+
+    **2. Document Server temp file** — `MAX_FILE_SIZE` gates the internal upload buffer
+    (bytes). Default is `104857600` (100 MB). A 200 MB file fails here too. Set it to
+    `268435456` (256 MB):
+
+    ```bash
+    -e MAX_FILE_SIZE=268435456
+    ```
+
+    **3. FileConverter downloads the file** — `FILECONVERTER_MAX_DOWNLOAD_BYTES` is the
+    max bytes the converter will fetch (default `524288000` = 500 MB). Already
+    sufficient for a 200 MB file. No change needed.
+
+    **4. FileConverter unzips the archive** — `FILECONVERTER_INPUT_LIMIT_UNCOMPRESSED`
+    checks the internal XML size. A 200 MB `.pptx` on disk might contain 800 MB of
+    uncompressed XML data (especially with embedded images, shapes, or animations).
+    The 500 MB default may be too low. Set it to `800MB`:
+
+    ```bash
+    -e FILECONVERTER_INPUT_LIMIT_UNCOMPRESSED=800MB
+    ```
+
+    | Stage | Variable | Value for 200 MB PPTX |
+    |---|---|---|
+    | Nginx upload | `NGINX_CLIENT_MAX_BODY_SIZE` | `250m` |
+    | Temp file buffer | `MAX_FILE_SIZE` | `268435456` (bytes) |
+    | Converter download | `FILECONVERTER_MAX_DOWNLOAD_BYTES` | `524288000` (default OK) |
+    | Uncompressed XML size | `FILECONVERTER_INPUT_LIMIT_UNCOMPRESSED` | `800MB` (if needed) |
+
+    Office files are ZIP archives containing XML. The uncompressed limit protects
+    against files that blow up the converter's memory when extracted. Adjust all four
+    if your users work with large documents.
 
 !!! note "Persisting the JWT secret"
     If `JWT_SECRET` is not set, a random secret is generated on first start and
