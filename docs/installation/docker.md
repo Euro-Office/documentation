@@ -62,7 +62,8 @@ Then open `http://localhost:8080/example/` in your browser.
 
 ## Persistent data
 
-By default, documents and configuration are lost when the container is removed. Mount volumes to persist them:
+By default, documents, configuration, and the secrets generated on first start are lost
+when the container is removed. Mount volumes to persist them:
 
 ```bash
 docker run -d \
@@ -72,10 +73,25 @@ docker run -d \
   -e JWT_ENABLED=true \
   -e JWT_SECRET=at-least-32-chars-long-for-hs256 \
   -v /path/to/data:/var/lib/{{ brand.package_path_name }}/documentserver \
+  -v /path/to/private:/var/www/{{ brand.package_path_name }}/Data \
   -v /path/to/logs:/var/log/{{ brand.package_path_name }}/documentserver \
   -v /path/to/config:/etc/{{ brand.package_path_name }}/documentserver \
   ghcr.io/euro-office/documentserver:latest
 ```
+
+`/var/www/{{ brand.package_path_name }}/Data` holds state the container creates at run time and is easy to
+overlook, because it is a separate tree from `/var/lib/{{ brand.package_path_name }}/documentserver`:
+
+- `runtime.json` — the administration panel password and any settings changed at run time
+- `.private/jwt_secret` — only created when `JWT_SECRET` is not supplied
+- `.private/secure_link_secret` — only created when `SECURE_LINK_SECRET` is not supplied
+- `wopi_private.key` and `wopi_public.key` — only created when `WOPI_ENABLED=true`
+
+Without this volume all of it is discarded when the container is recreated, and the
+generated values differ on the next start. Secrets you pass in as environment variables
+are not affected, but a regenerated JWT secret no longer matches the one configured in the
+Nextcloud connector app, and the connection stays broken until the new value is copied
+over.
 
 ## Environment variables
 
