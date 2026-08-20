@@ -1422,7 +1422,8 @@
 <p>Disable <code>EXAMPLE_ENABLED</code> in production. The example app has no access control.</p>
 </div>
 <h2 id="persistent-data">Persistent data<a class="headerlink" href="#persistent-data" title="Permanent link">&para;</a></h2>
-<p>By default, documents and configuration are lost when the container is removed. Mount volumes to persist them:</p>
+<p>By default, documents, configuration, and the secrets generated on first start are lost
+when the container is removed. Mount volumes to persist them:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>--name<span class="w"> </span>euro-office<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span>--restart<span class="o">=</span>unless-stopped<span class="w"> </span><span class="se">\</span>
@@ -1430,10 +1431,24 @@
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">JWT_ENABLED</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
 </span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">JWT_SECRET</span><span class="o">=</span>at-least-32-chars-long-for-hs256<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span>-v<span class="w"> </span>/path/to/data:/var/lib/euro-office/documentserver<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span>-v<span class="w"> </span>/path/to/logs:/var/log/euro-office/documentserver<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span>-v<span class="w"> </span>/path/to/config:/etc/euro-office/documentserver<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">  </span>ghcr.io/euro-office/documentserver:latest
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span>-v<span class="w"> </span>/path/to/private:/var/www/euro-office/Data<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span>-v<span class="w"> </span>/path/to/logs:/var/log/euro-office/documentserver<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">  </span>-v<span class="w"> </span>/path/to/config:/etc/euro-office/documentserver<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">  </span>ghcr.io/euro-office/documentserver:latest
 </span></code></pre></div>
+<p><code>/var/www/euro-office/Data</code> holds state the container creates at run time and is easy to
+overlook, because it is a separate tree from <code>/var/lib/euro-office/documentserver</code>:</p>
+<ul>
+<li><code>runtime.json</code> — the administration panel password and any settings changed at run time</li>
+<li><code>.private/jwt_secret</code> — only created when <code>JWT_SECRET</code> is not supplied</li>
+<li><code>.private/secure_link_secret</code> — only created when <code>SECURE_LINK_SECRET</code> is not supplied</li>
+<li><code>wopi_private.key</code> and <code>wopi_public.key</code> — only created when <code>WOPI_ENABLED=true</code></li>
+</ul>
+<p>Without this volume all of it is discarded when the container is recreated, and the
+generated values differ on the next start. Secrets you pass in as environment variables
+are not affected, but a regenerated JWT secret no longer matches the one configured in the
+Nextcloud connector app, and the connection stays broken until the new value is copied
+over.</p>
 <h2 id="environment-variables">Environment variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h2>
 <p>The most common variables are listed below. For the full set, including the
 <code>local.json</code> keys each one maps to, see <a href="../../configuration/server/">Server configuration</a>.</p>
