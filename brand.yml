@@ -25,6 +25,6 @@ brand:
   package_path_name: euro-office
   cli: eurooffice
   image: ghcr.io/euro-office/documentserver
-  url: https://euro-office.com
+  url: https://github.com/Euro-Office
   repo: https://github.com/Euro-Office
   docs_url: https://docs.euro-office.com
