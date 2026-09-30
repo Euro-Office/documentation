@@ -1433,8 +1433,7 @@ when the container is removed. Mount volumes to persist them:</p>
 </span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span>-v<span class="w"> </span>/path/to/data:/var/lib/euro-office/documentserver<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span>-v<span class="w"> </span>/path/to/private:/var/www/euro-office/Data<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span>-v<span class="w"> </span>/path/to/logs:/var/log/euro-office/documentserver<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">  </span>-v<span class="w"> </span>/path/to/config:/etc/euro-office/documentserver<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">  </span>ghcr.io/euro-office/documentserver:latest
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">  </span>ghcr.io/euro-office/documentserver:latest
 </span></code></pre></div>
 <p><code>/var/www/euro-office/Data</code> holds state the container creates at run time and is easy to
 overlook, because it is a separate tree from <code>/var/lib/euro-office/documentserver</code>:</p>
