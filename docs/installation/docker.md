@@ -75,7 +75,6 @@ docker run -d \
   -v /path/to/data:/var/lib/{{ brand.package_path_name }}/documentserver \
   -v /path/to/private:/var/www/{{ brand.package_path_name }}/Data \
   -v /path/to/logs:/var/log/{{ brand.package_path_name }}/documentserver \
-  -v /path/to/config:/etc/{{ brand.package_path_name }}/documentserver \
   ghcr.io/euro-office/documentserver:latest
 ```
 
