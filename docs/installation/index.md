@@ -9,6 +9,7 @@ Euro-Office Document Server can be installed in several ways depending on your e
 | Ubuntu | 24.04 LTS | `.deb` |
 | Debian | 12 (Bookworm) | `.deb` |
 | Fedora | 41+ (tested on 44) | `.rpm` |
+| Rocky Linux | 9 | `.rpm` |
 | Docker | — | Container image |
 
 ## Choose your installation method
@@ -39,13 +40,13 @@ Euro-Office Document Server can be installed in several ways depending on your e
 
     [:octicons-arrow-right-24: Debian installation](debian.md)
 
-- :fontawesome-brands-fedora: **Fedora (rpm)**
+- :fontawesome-brands-fedora: **Fedora / Rocky Linux (rpm)**
 
     ---
 
-    Install from an `.rpm` package on Fedora 41+. Tested on Fedora 44.
+    Install from an `.rpm` package on Fedora 41+ or Rocky Linux 9. Tested on Fedora 44 and Rocky Linux 9.
 
-    [:octicons-arrow-right-24: Fedora installation](fedora.md)
+    [:octicons-arrow-right-24: Fedora / Rocky Linux installation](fedora.md)
 
 </div>
 
@@ -61,7 +62,7 @@ For production deployments you typically place the document server behind a reve
 
 ## Which method should I use?
 
-| | Docker | Ubuntu (deb) | Debian (deb) | Fedora (rpm) |
+| | Docker | Ubuntu (deb) | Debian (deb) | Fedora / Rocky (rpm) |
 |---|---|---|---|---|
 | Recommended for production | Yes | Yes | Yes | |
 | Easiest to update | Yes | | | |
