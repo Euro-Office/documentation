@@ -1,24 +1,38 @@
-# Installing Euro-Office on Fedora
+# Installing Euro-Office on Fedora and Rocky Linux
 
-This guide covers installing Euro-Office Document Server on Fedora 41 or later from a GitHub release RPM package.
+This guide covers installing Euro-Office Document Server on Fedora 41 or later and on Rocky Linux 9 from a GitHub release RPM package.
 
-!!! info "Tested on Fedora 44"
-    These steps have been verified end-to-end on Fedora 44.
-    Rocky Linux 9 is **not supported** due to a glibc version incompatibility — see [Known issues](#known-issues).
+!!! info "Tested on Fedora 44 and Rocky Linux 9"
+    These steps have been verified end-to-end on Fedora 44 and Rocky Linux 9.
+    Rocky Linux 9 requires release <!-- TODO: first release built on Rocky 9 --> or later; older packages were built against a newer glibc and do not run on it.
 
 ## System requirements
 
-- Fedora 41 or later (x86_64 or aarch64)
+- Fedora 41 or later, or Rocky Linux 9 (x86_64 or aarch64)
 - 10 GB disk space minimum
 - 4 GB RAM minimum
 
 ## Step 1 — Install prerequisites
 
-Enable the RabbitMQ packagecloud repository:
+=== "Fedora"
 
-```bash
-curl -1sLf 'https://packagecloud.io/rabbitmq/rabbitmq-server/script.rpm.sh' | sudo bash
-```
+    Enable the RabbitMQ packagecloud repository:
+
+    ```bash
+    curl -1sLf 'https://packagecloud.io/rabbitmq/rabbitmq-server/script.rpm.sh' | sudo bash
+    ```
+
+=== "Rocky Linux 9"
+
+    Enable EPEL and CRB (they provide `valkey` and `supervisor`), then the RabbitMQ and Erlang packagecloud repositories. Rocky Linux does not ship the Erlang version RabbitMQ needs.
+
+    <!-- TODO: verify on Rocky 9 -->
+    ```bash
+    sudo dnf install -y epel-release
+    sudo dnf config-manager --set-enabled crb
+    curl -1sLf 'https://packagecloud.io/rabbitmq/erlang/script.rpm.sh' | sudo bash
+    curl -1sLf 'https://packagecloud.io/rabbitmq/rabbitmq-server/script.rpm.sh' | sudo bash
+    ```
 
 Install all prerequisites:
 
@@ -40,7 +54,7 @@ sudo systemctl enable --now postgresql valkey rabbitmq-server nginx supervisor
 
 ## Step 2 — Configure PostgreSQL authentication
 
-Fedora's PostgreSQL uses `ident` authentication by default, which blocks password-based logins. Edit `/var/lib/pgsql/data/pg_hba.conf` and change `ident` to `md5` on the two `127.0.0.1` and `::1` lines:
+Fedora's and Rocky Linux's PostgreSQL use `ident` authentication by default, which blocks password-based logins. Edit `/var/lib/pgsql/data/pg_hba.conf` and change `ident` to `md5` on the two `127.0.0.1` and `::1` lines:
 
 ```
 # before
@@ -79,7 +93,7 @@ wget "https://github.com/Euro-Office/DocumentServer/releases/download/v<version>
 
 ## Step 5 — Install the package
 
-The `msttcore-fonts` package is not available in Fedora's repositories. Install with `--nodeps` to skip that dependency:
+The `msttcore-fonts` package is not available in the Fedora or Rocky Linux repositories. Install with `--nodeps` to skip that dependency:
 
 ```bash
 sudo rpm -ivh --nodeps /tmp/{{ brand.package_path_name }}-documentserver.rpm
@@ -98,9 +112,9 @@ sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public
 
 ## Step 7 — Fix the nginx configuration
 
-Fedora's `/etc/nginx/nginx.conf` requires two changes before the document server can serve requests.
+The default `/etc/nginx/nginx.conf` requires up to two changes before the document server can serve requests.
 
-**1. The conf.d directory is not included.** Find this line in the `http {}` block:
+**1. The conf.d directory is not included.** Rocky Linux already includes it; skip this change if the `include` line below is active. Otherwise, find this line in the `http {}` block:
 
 ```nginx
 # include /etc/nginx/conf.d/*.conf;
@@ -132,7 +146,7 @@ sudo nginx -t && sudo systemctl reload nginx
 
 ## Step 8 — Install OpenSSL and generate JS caches
 
-The cache-generation script requires `openssl`, which is not installed on Fedora by default:
+The cache-generation script requires `openssl`, which may not be installed by default:
 
 ```bash
 sudo dnf install -y openssl
@@ -205,7 +219,7 @@ Expected output: `true`
 To verify the editor works end-to-end in a browser, follow the [Example App guide](example.md).
 
 !!! note "Use the server IP, not localhost"
-    When configuring the example app on Fedora, set `exampleUrl` to the server's actual IP address rather than `localhost` (e.g. `http://192.168.1.10/example`). Using `localhost` causes malformed callback URLs.
+    When configuring the example app on Fedora or Rocky Linux, set `exampleUrl` to the server's actual IP address rather than `localhost` (e.g. `http://192.168.1.10/example`). Using `localhost` causes malformed callback URLs.
 
     Since you set the JWT secret manually in Step 9, skip the `grep` command and enter that same secret directly.
 
@@ -227,11 +241,3 @@ sudo rpm -e {{ brand.package_path_name }}-documentserver
 sudo -u postgres psql -c "DROP DATABASE ds;"
 sudo -u postgres psql -c "DROP USER ds;"
 ```
-
-## Known issues
-
-### Rocky Linux 9 not supported
-
-The RPM package is built on Ubuntu with glibc 2.35. Rocky Linux 9 ships glibc 2.34 — one minor version behind. This causes the font and JS generation step (`AllFonts.js`) to fail silently, leaving the editor broken with no obvious error.
-
-Rocky Linux 10 (which ships with a newer glibc) may work once it is available. Until then, use Fedora 41+ or the [Docker installation](docker.md) instead.

@@ -101,7 +101,7 @@ nav:
       - installation/index.md
       - Ubuntu: installation/ubuntu.md
       - Debian: installation/debian.md
-      - Fedora: installation/fedora.md
+      - Fedora / Rocky Linux: installation/fedora.md
       - Docker: installation/docker.md
       - Verify with Example App: installation/example.md
   - Configuration:
