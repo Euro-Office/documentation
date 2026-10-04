@@ -15,6 +15,7 @@ integrations. The plugins below are currently maintained and known to work with
 | Plugin | Maintainer | License | Description |
 |---|---|---|---|
 | [MetaVox editor plugin](https://github.com/Rikdekker/metavox-editor-plugin) | Rik Dekker (community) | AGPL-3.0 | Displays and edits [MetaVox](https://github.com/Rikdekker/metavox-editor-plugin) document metadata in a right-side panel while editing documents. Requires the Nextcloud MetaVox app and the Nextcloud connector. |
+| [Curly](https://curly.io/install/euro-office) | Foundasys (commercial) | Proprietary, free 14-day trial | Detects `{placeholder}` tags in a document and fills them all from a right-side panel while editing, keeping the surrounding formatting intact. Document content is processed inside the editor and never sent to Curly's servers. |
 
 !!! tip "Community plugins welcome"
 
