@@ -21,7 +21,6 @@ docker exec {{ brand.package_path_name }} documentserver-jwt-status.sh
 | `documentserver-configure.sh` | Configure the database, message broker, Redis, JWT, and port. Package install only |
 | `documentserver-jwt-status.sh` | Print the current JWT enabled state, secret, and header |
 | `documentserver-generate-allfonts.sh` | Regenerate the font cache. See [Custom fonts](fonts.md) |
-| `documentserver-pluginsmanager.sh` | Install and update editor plugins. See [Installing plugins](plugins.md) |
 | `documentserver-flush-cache.sh` | Bump the cache tag so browsers reload editor assets |
 | `documentserver-update-securelink.sh` | Set or rotate the nginx secure-link secret |
 | `documentserver-static-gzip.sh` | Pre-compress static assets and enable nginx `gzip_static` |

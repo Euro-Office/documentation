@@ -226,7 +226,6 @@ These control how the Document Server fetches documents from storage such as Nex
 | Variable | Default | Description |
 |---|---|---|
 | `DS_LOG_LEVEL` | `WARN` | log4js level for the default category, for example `ERROR`, `WARN`, `INFO`, or `DEBUG` |
-| `PLUGINS_ENABLED` | `true` | Enable editor plugins |
 | `GENERATE_FONTS` | `true` | Regenerate the font cache on startup |
 | `ADMINPANEL_ENABLED` | `false` | Start the administration panel service |
 | `EXAMPLE_ENABLED` | `false` | Start the bundled example application at `/example/`. Do not enable it on a public instance |
