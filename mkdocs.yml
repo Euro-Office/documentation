@@ -107,14 +107,15 @@ nav:
   - Configuration:
       - Server configuration: configuration/server.md
       - Custom fonts: configuration/fonts.md
-      - Installing plugins: configuration/plugins.md
+      - Plugins: configuration/plugins.md
       - Logging: configuration/logging.md
       - Command-line tools: configuration/commands.md
   - Integration:
       - integration/index.md
       - Nextcloud: integration/nextcloud.md
-      - Plugins: integration/plugins.md
+      - Available plugins: integration/plugins.md
   - Development:
       - development/setup.md
       - Building from source: development/building.md
+      - Plugin development: development/plugins.md
       - development/contributing.md
