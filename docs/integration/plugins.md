@@ -25,10 +25,10 @@ are published as `.plugin` files on the
 
 | Plugin | What it does | Bundled | External services contacted | License |
 |---|---|---|---|---|
-| Highlight code | Insert source code with syntax highlighting | Yes | Google Fonts (icon font) | Apache-2.0 |
+| Highlight code | Insert source code with syntax highlighting | Yes | None | Apache-2.0 |
 | Photo editor | Crop, resize, and apply effects to images | Yes | None | Apache-2.0 |
-| Zotero | Insert citations and bibliographies from a Zotero library | Yes | Zotero API (`api.zotero.org`), citation styles from `zotero.org` | AGPL-3.0 |
-| Mendeley | Insert citations and bibliographies from a Mendeley library | Yes | Mendeley API (`api.mendeley.com`), citation styles from `zotero.org` and `raw.githubusercontent.com` | Apache-2.0 |
+| Zotero | Insert citations and bibliographies from a Zotero library | No | Zotero API (`api.zotero.org`), citation styles from `zotero.org` | AGPL-3.0 |
+| Mendeley | Insert citations and bibliographies from a Mendeley library | Yes | Mendeley API (`api.mendeley.com`), citation styles from `zotero.org` and `raw.githubusercontent.com`, with a bundled fallback for common styles | Apache-2.0 |
 | OCR | Recognize text in images and insert it | No | OCR engine and language data from `cdn.jsdelivr.net`. Images are processed in the browser | Apache-2.0 |
 | DeepL | Translate the selected text with DeepL | No | DeepL API, through the ONLYOFFICE proxy `plugins-services.onlyoffice.com` | Apache-2.0 |
 | Translator | Translate the selected text with Google Translate | No | Google Translate | Apache-2.0 |

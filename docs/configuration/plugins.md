@@ -60,7 +60,6 @@ from the [{{ brand.name }} plugins repository]({{ brand.repo }}/plugins):
 |---|---|
 | Highlight code | Insert source code with syntax highlighting |
 | Photo editor | Crop, resize, and apply effects to images |
-| Zotero | Insert citations and bibliographies from a Zotero library |
 | Mendeley | Insert citations and bibliographies from a Mendeley library |
 
 All bundled plugins are visual plugins: they appear in the **Plugins** tab and
