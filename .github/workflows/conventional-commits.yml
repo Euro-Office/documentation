@@ -21,7 +21,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  check:
+  conventional-commits:
     runs-on: ubuntu-latest
     steps:
       - name: Check PR title and commit subjects
