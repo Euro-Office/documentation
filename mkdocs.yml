@@ -99,6 +99,7 @@ nav:
       - introduction/licensing.md
   - Installation:
       - installation/index.md
+      - Choose a build: installation/releases.md
       - Ubuntu: installation/ubuntu.md
       - Debian: installation/debian.md
       - Fedora: installation/fedora.md

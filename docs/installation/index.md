@@ -2,6 +2,9 @@
 
 Euro-Office Document Server can be installed in several ways depending on your environment and requirements.
 
+!!! tip "Euro-Office or Nextcloud Office?"
+    Builds are available from two distribution tracks. See [Choose a build](releases.md) to pick the right one.
+
 ## Supported platforms
 
 | Platform | Version | Package |
@@ -63,7 +66,6 @@ For production deployments you typically place the document server behind a reve
 
 | | Docker | Ubuntu (deb) | Debian (deb) | Fedora (rpm) |
 |---|---|---|---|---|
-| Recommended for production | Yes | Yes | Yes | |
 | Easiest to update | Yes | | | |
 | Full OS control | | Yes | Yes | Yes |
 | Nextcloud integration | Yes | Yes | Yes | Yes |

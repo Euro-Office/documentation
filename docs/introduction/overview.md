@@ -30,6 +30,7 @@ on a release schedule and packaging story that fits sovereign-cloud deployments.
 
 ## Where to go next
 
+- Not sure which build to download? See [Choose a build](../installation/releases.md).
 - New to {{ brand.name }}? Start with the [architecture overview](architecture.md).
 - Ready to run something? Jump to the [Docker installation](../installation/docker.md).
 - Building from source? See the [developer setup](../development/setup.md).
