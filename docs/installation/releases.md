@@ -25,6 +25,7 @@ integration testing against Nextcloud releases:
 
 - Signed Desktop Editors packages for Windows and macOS, verified for integrity
   and suitable for managed device rollouts
+- Document Server `.deb`/`.rpm` packages: [nextcloud-releases/Office-DocumentServer releases](https://github.com/nextcloud-releases/Office-DocumentServer/releases)
 - Document Server and Desktop Editors `.deb`/`.rpm` package repositories
 - Tested Nextcloud integration
 - Support through Nextcloud's official channels

@@ -67,23 +67,59 @@ sudo -u postgres psql -c "CREATE DATABASE ds OWNER ds;"
 
 ## Step 4 — Download the package
 
-Download the latest RPM from [GitHub Releases](https://github.com/Euro-Office/DocumentServer/releases):
+=== "Nextcloud Office"
 
-```bash
-# Replace <version> with your value, e.g. 9.3.1-rc.1
-wget "https://github.com/Euro-Office/DocumentServer/releases/download/v<version>/{{ brand.package_path_name }}-documentserver-<version>.x86_64.rpm" \
-  -O /tmp/{{ brand.package_path_name }}-documentserver.rpm
-```
+    Add the signed Nextcloud Office DNF repository and download the package:
 
-**Available architectures:** `x86_64`, `aarch64`
+    ```bash
+    sudo tee /etc/yum.repos.d/nextcloud-office.repo > /dev/null << 'EOF'
+    [nextcloud-office]
+    name=Nextcloud Office
+    baseurl=https://download.nextcloud.com/office/repo/rpm/stable/$basearch
+    enabled=1
+    gpgcheck=1
+    repo_gpgcheck=1
+    gpgkey=https://download.nextcloud.com/office/repo/nextcloud-office.asc
+    EOF
+    sudo rpm --import https://download.nextcloud.com/office/repo/nextcloud-office.asc
+    ```
+
+    ```bash
+    sudo dnf download --repo nextcloud-office --destdir /tmp nextcloud-office-documentserver
+    ```
+
+    The package depends on `msttcore-fonts-installer`, which Fedora does not ship, so `dnf install` cannot resolve it. Install the downloaded package with `rpm` in the next step instead.
+
+=== "Euro-Office"
+
+    Download the latest RPM from [GitHub Releases](https://github.com/Euro-Office/DocumentServer/releases):
+
+    ```bash
+    # Replace <version> with your value, e.g. 9.3.1-rc.1
+    wget "https://github.com/Euro-Office/DocumentServer/releases/download/v<version>/{{ brand.package_path_name }}-documentserver-<version>.x86_64.rpm" \
+      -O /tmp/{{ brand.package_path_name }}-documentserver.rpm
+    ```
+
+    **Available architectures:** `x86_64`, `aarch64`
 
 ## Step 5 — Install the package
 
 The `msttcore-fonts` package is not available in Fedora's repositories. Install with `--nodeps` to skip that dependency:
 
-```bash
-sudo rpm -ivh --nodeps /tmp/{{ brand.package_path_name }}-documentserver.rpm
-```
+=== "Nextcloud Office"
+
+    ```bash
+    sudo rpm -ivh --nodeps /tmp/nextcloud-office-documentserver-*.rpm
+    ```
+
+=== "Euro-Office"
+
+    ```bash
+    sudo rpm -ivh --nodeps /tmp/{{ brand.package_path_name }}-documentserver.rpm
+    ```
+
+!!! note
+    Nextcloud Office installs to `nextcloud-office` paths. Replace `euro-office` with `nextcloud-office` in the paths of the following steps, for example `/etc/nextcloud-office/documentserver/local.json`.
 
 ## Step 6 — Initialize the database schema
 
@@ -211,18 +247,28 @@ To verify the editor works end-to-end in a browser, follow the [Example App guid
 
 ## Updating
 
-Download the new release RPM and upgrade in place:
+=== "Nextcloud Office"
 
-```bash
-wget "https://github.com/Euro-Office/DocumentServer/releases/download/v<new-version>/{{ brand.package_path_name }}-documentserver-<new-version>.x86_64.rpm" \
-  -O /tmp/{{ brand.package_path_name }}-documentserver.rpm
-sudo rpm -Uvh --nodeps /tmp/{{ brand.package_path_name }}-documentserver.rpm
-sudo /usr/bin/documentserver-flush-cache.sh
-```
+    ```bash
+    sudo dnf download --refresh --repo nextcloud-office --destdir /tmp nextcloud-office-documentserver
+    sudo rpm -Uvh --nodeps /tmp/nextcloud-office-documentserver-*.rpm
+    ```
+
+=== "Euro-Office"
+
+    Download the new release RPM and upgrade in place:
+
+    ```bash
+    wget "https://github.com/Euro-Office/DocumentServer/releases/download/v<new-version>/{{ brand.package_path_name }}-documentserver-<new-version>.x86_64.rpm" \
+      -O /tmp/{{ brand.package_path_name }}-documentserver.rpm
+    sudo rpm -Uvh --nodeps /tmp/{{ brand.package_path_name }}-documentserver.rpm
+    sudo /usr/bin/documentserver-flush-cache.sh
+    ```
 
 ## Uninstalling
 
 ```bash
+# Nextcloud Office: nextcloud-office-documentserver
 sudo rpm -e {{ brand.package_path_name }}-documentserver
 sudo -u postgres psql -c "DROP DATABASE ds;"
 sudo -u postgres psql -c "DROP USER ds;"
