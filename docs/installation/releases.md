@@ -6,14 +6,14 @@ builds. Both are built from the same publicly available source.
 
 ## Which build should I use?
 
-|                              | Nextcloud Office                     | Euro-Office                    |
-|------------------------------|--------------------------------------|--------------------------------|
-| Audience                     | Production, enterprise, institutions | Developers, testers, community |
-| Signed Desktop Editors       | Yes                                  | No                             |
-| Package repositories         | Yes                                  | No                             |
-| Nextcloud integration tested | Yes                                  | Best effort                    |
-| Support                      | Nextcloud                            | Community                      |
-| Source available             | Yes                                  | Yes                            |
+|                              | Euro-Office                    | Nextcloud Office                             |
+|------------------------------|--------------------------------|----------------------------------------------|
+| Audience                     | Developers, testers, community | Production, enterprise, institutions         |
+| Signed Desktop Editors       | No                             | Yes                                          |
+| Package repositories         | No                             | Yes                                          |
+| Nextcloud integration tested | Best effort                    | Yes                                          |
+| Support                      | Community                      | Community, Nextcloud Enterprise subscription |
+| Source available             | Yes                            | Yes                                          |
 
 If you want to try out the editors, or deploy them for your users,
 Nextcloud Office is the recommended choice.
@@ -28,7 +28,7 @@ integration testing against Nextcloud releases:
 - Document Server `.deb`/`.rpm` packages: [nextcloud-releases/Office-DocumentServer releases](https://github.com/nextcloud-releases/Office-DocumentServer/releases)
 - Document Server and Desktop Editors `.deb`/`.rpm` package repositories
 - Tested Nextcloud integration
-- Support through Nextcloud's official channels
+- Community support, and professional support through a [Nextcloud Enterprise subscription](https://nextcloud.com/enterprise/)
 
 [Download Nextcloud Office Desktop Editors](https://github.com/nextcloud-releases/Office-DesktopEditors/releases/latest){ .md-button .md-button--primary }
 

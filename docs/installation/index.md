@@ -3,7 +3,7 @@
 Euro-Office Document Server can be installed in several ways depending on your environment and requirements.
 
 !!! tip "Euro-Office or Nextcloud Office?"
-    Nextcloud Office is the signed and supported distribution of Euro-Office for production use, while Euro-Office builds are community builds for testing and contributing. See [Choose a build](releases.md) for details.
+    Nextcloud Office is the signed distribution of Euro-Office for production use, with community support and professional support through a Nextcloud Enterprise subscription, while Euro-Office builds are community builds for testing and contributing. See [Choose a build](releases.md) for details.
 
 ## Downloads
 
