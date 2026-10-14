@@ -569,6 +569,8 @@
       
         
       
+        
+      
     
     
       
@@ -613,6 +615,27 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../releases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Choose a build
+  </span>
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -734,9 +757,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-5-download-the-package" class="md-nav__link">
+  <a href="#step-5-add-the-package-source" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 5 — Download the package
+      Step 5 — Add the package source
     </span>
   </a>
   
@@ -1329,9 +1352,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-5-download-the-package" class="md-nav__link">
+  <a href="#step-5-add-the-package-source" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 5 — Download the package
+      Step 5 — Add the package source
     </span>
   </a>
   
@@ -1414,7 +1437,7 @@
 
 
 <h1 id="installing-euro-office-on-debian">Installing Euro-Office on Debian<a class="headerlink" href="#installing-euro-office-on-debian" title="Permanent link">&para;</a></h1>
-<p>This guide covers installing Euro-Office Document Server on Debian 12 (Bookworm) from a GitHub release package.</p>
+<p>This guide covers installing Euro-Office Document Server on Debian 12 (Bookworm) from the Nextcloud Office package repository or a Euro-Office GitHub release package.</p>
 <h2 id="system-requirements">System requirements<a class="headerlink" href="#system-requirements" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Debian 12 (Bookworm) — arm64 or amd64</li>
@@ -1451,46 +1474,85 @@ and database first:</p>
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="s2">ds ds/db-pwd password ds</span>
 </span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="s2">ds ds/db-name string ds&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>debconf-set-selections
 </span></code></pre></div>
-<h2 id="step-5-download-the-package">Step 5 — Download the package<a class="headerlink" href="#step-5-download-the-package" title="Permanent link">&para;</a></h2>
+<h2 id="step-5-add-the-package-source">Step 5 — Add the package source<a class="headerlink" href="#step-5-add-the-package-source" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Nextcloud Office</label><label for="__tabbed_1_2">Euro-Office</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Add the signed Nextcloud Office APT repository:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>install<span class="w"> </span>-d<span class="w"> </span>-m<span class="w"> </span><span class="m">0755</span><span class="w"> </span>/etc/apt/keyrings
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>sudo<span class="w"> </span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://download.nextcloud.com/office/repo/nextcloud-office.asc<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>-o<span class="w"> </span>/etc/apt/keyrings/nextcloud-office.asc
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;deb [signed-by=/etc/apt/keyrings/nextcloud-office.asc] \</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="s2">  https://download.nextcloud.com/office/repo/deb stable main&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/nextcloud-office.list
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
 <p>Download the latest release from <a href="https://github.com/Euro-Office/DocumentServer/releases">GitHub Releases</a>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Replace &lt;version&gt; and &lt;arch&gt; with your values, e.g. 9.3.1-rc.1 and amd64 or arm64</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>wget<span class="w"> </span><span class="s2">&quot;https://github.com/Euro-Office/DocumentServer/releases/download/v&lt;version&gt;/euro-office-documentserver_&lt;version&gt;_&lt;arch&gt;.deb&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>-O<span class="w"> </span>/tmp/euro-office-documentserver.deb
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Replace &lt;version&gt; and &lt;arch&gt; with your values, e.g. 9.3.1-rc.1 and amd64 or arm64</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>wget<span class="w"> </span><span class="s2">&quot;https://github.com/Euro-Office/DocumentServer/releases/download/v&lt;version&gt;/euro-office-documentserver_&lt;version&gt;_&lt;arch&gt;.deb&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span>-O<span class="w"> </span>/tmp/euro-office-documentserver.deb
 </span></code></pre></div>
 <p><strong>Available architectures:</strong> <code>amd64</code>, <code>arm64</code></p>
+</div>
+</div>
+</div>
 <h2 id="step-6-install-the-package">Step 6 — Install the package<a class="headerlink" href="#step-6-install-the-package" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>/tmp/euro-office-documentserver.deb
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Nextcloud Office</label><label for="__tabbed_2_2">Euro-Office</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>nextcloud-office-documentserver
 </span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>/tmp/euro-office-documentserver.deb
+</span></code></pre></div>
+</div>
+</div>
+</div>
 <p>The installer generates fonts, WOPI keys, and JS caches. This takes a minute. A
 successful install ends with:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Congratulations, the Euro-Office DocumentServer has been installed successfully!
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Congratulations, the Euro-Office DocumentServer has been installed successfully!
 </span></code></pre></div>
 <h2 id="step-7-verify">Step 7 — Verify<a class="headerlink" href="#step-7-verify" title="Permanent link">&para;</a></h2>
 <p>Check that all services are running:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>systemctl<span class="w"> </span>is-active<span class="w"> </span>ds-docservice<span class="w"> </span>ds-converter<span class="w"> </span>ds-metrics<span class="w"> </span>nginx
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>systemctl<span class="w"> </span>is-active<span class="w"> </span>ds-docservice<span class="w"> </span>ds-converter<span class="w"> </span>ds-metrics<span class="w"> </span>nginx
 </span></code></pre></div>
 <p>Expected output:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>active
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>active
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>active
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>active
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>active
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>active
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>active
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>active
 </span></code></pre></div>
 <p>Run the health check:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>curl<span class="w"> </span>http://localhost/healthcheck
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>curl<span class="w"> </span>http://localhost/healthcheck
 </span></code></pre></div>
 <p>Expected output: <code>true</code></p>
 <h2 id="optional-test-with-the-built-in-example-app">Optional: Test with the built-in example app<a class="headerlink" href="#optional-test-with-the-built-in-example-app" title="Permanent link">&para;</a></h2>
 <p>To verify the editor works end-to-end in a browser, follow the <a href="../example/">Example App guide</a>.</p>
 <h2 id="updating">Updating<a class="headerlink" href="#updating" title="Permanent link">&para;</a></h2>
-<p>Download the new release package and reinstall:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>wget<span class="w"> </span><span class="s2">&quot;https://github.com/Euro-Office/DocumentServer/releases/download/v&lt;new-version&gt;/euro-office-documentserver_&lt;new-version&gt;_&lt;arch&gt;.deb&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span>-O<span class="w"> </span>/tmp/euro-office-documentserver.deb
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>/tmp/euro-office-documentserver.deb
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Nextcloud Office</label><label for="__tabbed_3_2">Euro-Office</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>--only-upgrade<span class="w"> </span>-y<span class="w"> </span>nextcloud-office-documentserver
 </span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Download the new release package and reinstall:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>wget<span class="w"> </span><span class="s2">&quot;https://github.com/Euro-Office/DocumentServer/releases/download/v&lt;new-version&gt;/euro-office-documentserver_&lt;new-version&gt;_&lt;arch&gt;.deb&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span>-O<span class="w"> </span>/tmp/euro-office-documentserver.deb
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>/tmp/euro-office-documentserver.deb
+</span></code></pre></div>
+</div>
+</div>
+</div>
 <h2 id="uninstalling">Uninstalling<a class="headerlink" href="#uninstalling" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>remove<span class="w"> </span>--purge<span class="w"> </span>euro-office-documentserver
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>psql<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;DROP DATABASE ds;&quot;</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>psql<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;DROP USER ds;&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Nextcloud Office: nextcloud-office-documentserver</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>remove<span class="w"> </span>--purge<span class="w"> </span>euro-office-documentserver
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>psql<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;DROP DATABASE ds;&quot;</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>psql<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;DROP USER ds;&quot;</span>
 </span></code></pre></div>
 
 

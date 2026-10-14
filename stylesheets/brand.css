@@ -6,8 +6,35 @@
   --md-text-font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
+/* Widen the content area (Material default: 61rem). */
+.md-grid {
+  max-width: 72rem;
+}
+
 /* Make landing-page grid cards a touch tighter and consistent in height. */
 .md-typeset .grid.cards > :is(ul, ol) > li,
 .md-typeset .grid > .card {
   border-radius: 0.4rem;
+}
+
+/* Full-width download tables inside content tabs. */
+.md-typeset .tabbed-block .md-typeset__table,
+.md-typeset .tabbed-block table:not([class]) {
+  display: table;
+  width: 100%;
+}
+
+.md-typeset .tabbed-block table:not([class]) td {
+  vertical-align: middle;
+}
+
+/* Keep button columns as narrow as their buttons, side by side. */
+.md-typeset .tabbed-block td:has(.md-button) {
+  width: 1%;
+  white-space: nowrap;
+}
+
+.md-typeset .tabbed-block td .md-button {
+  padding: 0.4em 1.2em;
+  margin: 0.1rem 0;
 }
