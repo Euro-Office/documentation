@@ -2,14 +2,96 @@
 
 Euro-Office Document Server can be installed in several ways depending on your environment and requirements.
 
-## Supported platforms
+!!! tip "Euro-Office or Nextcloud Office?"
+    Nextcloud Office is the signed distribution of Euro-Office for production use, with community support and professional support through a Nextcloud Enterprise subscription, while Euro-Office builds are community builds for testing and contributing. See [Choose a build](releases.md) for details.
 
-| Platform | Version | Package |
-|---|---|---|
-| Ubuntu | 24.04 LTS | `.deb` |
-| Debian | 12 (Bookworm) | `.deb` |
-| Fedora | 41+ (tested on 44) | `.rpm` |
-| Docker | — | Container image |
+## Downloads
+
+### :material-monitor: Desktop apps
+
+Desktop editors for working on documents offline, on Windows, macOS, and Linux.
+
+=== "Nextcloud Office"
+
+    Signed builds, recommended for managed devices.
+
+    | Operating system | Architecture | Package | |
+    |---|---|---|---|
+    | :fontawesome-brands-windows: Windows | x64, arm64 | `.exe` (signed) | [Download](https://github.com/nextcloud-releases/Office-DesktopEditors/releases/latest){ .md-button .md-button--primary } |
+    | :fontawesome-brands-apple: macOS | Apple Silicon | `.dmg` (signed) | [Download](https://github.com/nextcloud-releases/Office-DesktopEditors/releases/latest){ .md-button .md-button--primary } |
+    | :fontawesome-brands-ubuntu: :fontawesome-brands-debian: Linux (Ubuntu, Debian) | x86_64, aarch64 | `.deb` | [Download](https://github.com/nextcloud-releases/Office-DesktopEditors/releases/latest){ .md-button .md-button--primary } [Repository](#nextcloud-office-package-repository){ .md-button } |
+    | :fontawesome-brands-fedora: Linux (Fedora) | x86_64, aarch64 | `.rpm` | [Download](https://github.com/nextcloud-releases/Office-DesktopEditors/releases/latest){ .md-button .md-button--primary } [Repository](#nextcloud-office-package-repository){ .md-button } |
+
+=== "Euro-Office"
+
+    Unsigned community builds.
+
+    | Operating system | Architecture | Package | |
+    |---|---|---|---|
+    | :fontawesome-brands-windows: Windows | x64, arm64 | `.exe`, `.zip` | [Download](https://github.com/Euro-Office/DesktopEditors/releases/latest){ .md-button } |
+    | :fontawesome-brands-apple: macOS | Apple Silicon | `.dmg` | [Download](https://github.com/Euro-Office/DesktopEditors/releases/latest){ .md-button } |
+    | :fontawesome-brands-ubuntu: :fontawesome-brands-debian: Linux (Ubuntu, Debian) | amd64, arm64 | `.deb` | [Download](https://github.com/Euro-Office/DesktopEditors/releases/latest){ .md-button } |
+    | :fontawesome-brands-fedora: Linux (Fedora) | x86_64, aarch64 | `.rpm` | [Download](https://github.com/Euro-Office/DesktopEditors/releases/latest){ .md-button } |
+    | :fontawesome-brands-linux: Linux (other) | x86_64, aarch64 | `.tar.xz` | [Download](https://github.com/Euro-Office/DesktopEditors/releases/latest){ .md-button } |
+
+### :material-server: Document Server
+
+The Document Server is not a standalone application. It provides the editors and collaboration backend, and needs a platform that stores the files and provides the user interface, such as [Nextcloud](../integration/nextcloud.md).
+
+=== "Nextcloud Office"
+
+    Packages are available from the [package repository](#nextcloud-office-package-repository) and on [nextcloud-releases/Office-DocumentServer](https://github.com/nextcloud-releases/Office-DocumentServer/releases). The container image is not available yet, use the Euro-Office image until then.
+
+    | Platform | Architecture | Package | |
+    |---|---|---|---|
+    | :fontawesome-brands-ubuntu: Ubuntu 24.04 LTS, :fontawesome-brands-debian: Debian 12 | amd64, arm64 | `.deb` | [Download](https://github.com/nextcloud-releases/Office-DocumentServer/releases){ .md-button .md-button--primary } [Repository](#nextcloud-office-package-repository){ .md-button } |
+    | :fontawesome-brands-fedora: Fedora 41+ | x86_64, aarch64 | `.rpm` | [Download](https://github.com/nextcloud-releases/Office-DocumentServer/releases){ .md-button .md-button--primary } [Repository](#nextcloud-office-package-repository){ .md-button } |
+    | :fontawesome-brands-docker: Docker | amd64, arm64 | Container image | Coming soon |
+
+=== "Euro-Office"
+
+    | Platform | Architecture | Package | | |
+    |---|---|---|---|---|
+    | :fontawesome-brands-ubuntu: Ubuntu 24.04 LTS, :fontawesome-brands-debian: Debian 12 | amd64, arm64 | `.deb` | [Download](https://github.com/Euro-Office/DocumentServer/releases/latest){ .md-button .md-button--primary } | [Ubuntu docs](ubuntu.md){ .md-button } [Debian docs](debian.md){ .md-button } |
+    | :fontawesome-brands-fedora: Fedora 41+ | x86_64, aarch64 | `.rpm` | [Download](https://github.com/Euro-Office/DocumentServer/releases/latest){ .md-button .md-button--primary } | [Documentation](fedora.md){ .md-button } |
+    | :fontawesome-brands-docker: Docker | amd64, arm64 | Container image | [Download](https://github.com/Euro-Office/DocumentServer/pkgs/container/documentserver){ .md-button .md-button--primary } | [Documentation](docker.md){ .md-button } |
+
+Download buttons open the latest release, pick the file for your architecture there.
+
+### :material-package-variant: Nextcloud Office package repository
+
+Nextcloud Office provides signed APT and DNF repositories at [`https://download.nextcloud.com/office/repo`](https://download.nextcloud.com/office/repo/) for the Document Server (`nextcloud-office-documentserver`) and the Desktop Editors (`nextcloud-office-nextcloudoffice`). Installing from the repository keeps your packages up to date with regular system updates.
+
+=== "Ubuntu / Debian"
+
+    ```bash
+    sudo install -d -m 0755 /etc/apt/keyrings
+    sudo curl -fsSL https://download.nextcloud.com/office/repo/nextcloud-office.asc \
+      -o /etc/apt/keyrings/nextcloud-office.asc
+    echo "deb [signed-by=/etc/apt/keyrings/nextcloud-office.asc] \
+      https://download.nextcloud.com/office/repo/deb stable main" \
+      | sudo tee /etc/apt/sources.list.d/nextcloud-office.list
+    sudo apt-get update
+    ```
+
+    Install the Desktop Editors with `sudo apt-get install nextcloud-office-nextcloudoffice`. For the Document Server, follow the [Ubuntu](ubuntu.md) or [Debian](debian.md) guide.
+
+=== "Fedora"
+
+    ```bash
+    sudo tee /etc/yum.repos.d/nextcloud-office.repo > /dev/null << 'EOF'
+    [nextcloud-office]
+    name=Nextcloud Office
+    baseurl=https://download.nextcloud.com/office/repo/rpm/stable/$basearch
+    enabled=1
+    gpgcheck=1
+    repo_gpgcheck=1
+    gpgkey=https://download.nextcloud.com/office/repo/nextcloud-office.asc
+    EOF
+    sudo rpm --import https://download.nextcloud.com/office/repo/nextcloud-office.asc
+    ```
+
+    Install the Desktop Editors with `sudo dnf install nextcloud-office-nextcloudoffice`. For the Document Server, follow the [Fedora](fedora.md) guide.
 
 ## Choose your installation method
 
@@ -63,7 +145,6 @@ For production deployments you typically place the document server behind a reve
 
 | | Docker | Ubuntu (deb) | Debian (deb) | Fedora (rpm) |
 |---|---|---|---|---|
-| Recommended for production | Yes | Yes | Yes | |
 | Easiest to update | Yes | | | |
 | Full OS control | | Yes | Yes | Yes |
 | Nextcloud integration | Yes | Yes | Yes | Yes |

@@ -1,6 +1,6 @@
 # Installing Euro-Office on Debian
 
-This guide covers installing Euro-Office Document Server on Debian 12 (Bookworm) from a GitHub release package.
+This guide covers installing Euro-Office Document Server on Debian 12 (Bookworm) from the Nextcloud Office package repository or a Euro-Office GitHub release package.
 
 ## System requirements
 
@@ -56,23 +56,47 @@ ds ds/db-pwd password ds
 ds ds/db-name string ds" | sudo debconf-set-selections
 ```
 
-## Step 5 — Download the package
+## Step 5 — Add the package source
 
-Download the latest release from [GitHub Releases](https://github.com/Euro-Office/DocumentServer/releases):
+=== "Nextcloud Office"
 
-```bash
-# Replace <version> and <arch> with your values, e.g. 9.3.1-rc.1 and amd64 or arm64
-wget "https://github.com/Euro-Office/DocumentServer/releases/download/v<version>/{{ brand.package_path_name }}-documentserver_<version>_<arch>.deb" \
-  -O /tmp/{{ brand.package_path_name }}-documentserver.deb
-```
+    Add the signed Nextcloud Office APT repository:
 
-**Available architectures:** `amd64`, `arm64`
+    ```bash
+    sudo install -d -m 0755 /etc/apt/keyrings
+    sudo curl -fsSL https://download.nextcloud.com/office/repo/nextcloud-office.asc \
+      -o /etc/apt/keyrings/nextcloud-office.asc
+    echo "deb [signed-by=/etc/apt/keyrings/nextcloud-office.asc] \
+      https://download.nextcloud.com/office/repo/deb stable main" \
+      | sudo tee /etc/apt/sources.list.d/nextcloud-office.list
+    sudo apt-get update
+    ```
+
+=== "Euro-Office"
+
+    Download the latest release from [GitHub Releases](https://github.com/Euro-Office/DocumentServer/releases):
+
+    ```bash
+    # Replace <version> and <arch> with your values, e.g. 9.3.1-rc.1 and amd64 or arm64
+    wget "https://github.com/Euro-Office/DocumentServer/releases/download/v<version>/{{ brand.package_path_name }}-documentserver_<version>_<arch>.deb" \
+      -O /tmp/{{ brand.package_path_name }}-documentserver.deb
+    ```
+
+    **Available architectures:** `amd64`, `arm64`
 
 ## Step 6 — Install the package
 
-```bash
-sudo apt-get install -y /tmp/{{ brand.package_path_name }}-documentserver.deb
-```
+=== "Nextcloud Office"
+
+    ```bash
+    sudo apt-get install -y nextcloud-office-documentserver
+    ```
+
+=== "Euro-Office"
+
+    ```bash
+    sudo apt-get install -y /tmp/{{ brand.package_path_name }}-documentserver.deb
+    ```
 
 The installer generates fonts, WOPI keys, and JS caches. This takes a minute. A
 successful install ends with:
@@ -112,17 +136,27 @@ To verify the editor works end-to-end in a browser, follow the [Example App guid
 
 ## Updating
 
-Download the new release package and reinstall:
+=== "Nextcloud Office"
 
-```bash
-wget "https://github.com/Euro-Office/DocumentServer/releases/download/v<new-version>/{{ brand.package_path_name }}-documentserver_<new-version>_<arch>.deb" \
-  -O /tmp/{{ brand.package_path_name }}-documentserver.deb
-sudo apt-get install -y /tmp/{{ brand.package_path_name }}-documentserver.deb
-```
+    ```bash
+    sudo apt-get update
+    sudo apt-get install --only-upgrade -y nextcloud-office-documentserver
+    ```
+
+=== "Euro-Office"
+
+    Download the new release package and reinstall:
+
+    ```bash
+    wget "https://github.com/Euro-Office/DocumentServer/releases/download/v<new-version>/{{ brand.package_path_name }}-documentserver_<new-version>_<arch>.deb" \
+      -O /tmp/{{ brand.package_path_name }}-documentserver.deb
+    sudo apt-get install -y /tmp/{{ brand.package_path_name }}-documentserver.deb
+    ```
 
 ## Uninstalling
 
 ```bash
+# Nextcloud Office: nextcloud-office-documentserver
 sudo apt-get remove --purge {{ brand.package_path_name }}-documentserver
 sudo -u postgres psql -c "DROP DATABASE ds;"
 sudo -u postgres psql -c "DROP USER ds;"

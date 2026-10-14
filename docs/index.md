@@ -27,7 +27,7 @@ It is not a standalone application; it requires a compatible storage backend to 
 
     ---
 
-    Production deployment via Docker, Ubuntu (deb), and Fedora (rpm).
+    Install via Docker, Ubuntu or Debian (deb), and Fedora (rpm).
 
     [:octicons-arrow-right-24: Installation guide](installation/index.md)
 
