@@ -62,8 +62,8 @@ Then open `http://localhost:8080/example/` in your browser.
 
 ## Persistent data
 
-By default, documents, configuration, and the secrets generated on first start are lost
-when the container is removed. Mount volumes to persist them:
+By default, the database, the document cache, and the secrets generated on first start are
+lost when the container is removed. Mount volumes to persist them:
 
 ```bash
 docker run -d \
@@ -75,8 +75,23 @@ docker run -d \
   -v /path/to/data:/var/lib/{{ brand.package_path_name }}/documentserver \
   -v /path/to/private:/var/www/{{ brand.package_path_name }}/Data \
   -v /path/to/logs:/var/log/{{ brand.package_path_name }}/documentserver \
+  -v /path/to/postgresql:/var/lib/postgresql \
   ghcr.io/euro-office/documentserver:latest
 ```
+
+| Container path | Contents |
+|---|---|
+| `/var/lib/{{ brand.package_path_name }}/documentserver` | Cache of documents that are currently open |
+| `/var/www/{{ brand.package_path_name }}/Data` | Generated secrets and run time settings, see below |
+| `/var/log/{{ brand.package_path_name }}/documentserver` | Logs (optional) |
+| `/var/lib/postgresql` | Bundled database, holds edits not yet saved back to the storage. Not needed with an external database (`DB_HOST`) |
+
+The documents themselves live in the integrating application, for example Nextcloud. What
+is at risk without these volumes are edits that have not been saved back yet.
+
+Do not mount `/etc/{{ brand.package_path_name }}/documentserver`. An empty mount hides the
+shipped configuration and the server does not start. The container writes `local.json` from
+the environment variables on every start, so configure it through those instead.
 
 `/var/www/{{ brand.package_path_name }}/Data` holds state the container creates at run time and is easy to
 overlook, because it is a separate tree from `/var/lib/{{ brand.package_path_name }}/documentserver`:
@@ -117,9 +132,14 @@ The most common variables are listed below. For the full set, including the
 
 ```bash
 docker pull ghcr.io/euro-office/documentserver:latest
+docker exec {{ brand.package_path_name }} documentserver-prepare4shutdown.sh
 docker stop {{ brand.package_path_name }} && docker rm {{ brand.package_path_name }}
 # re-run with the same docker run command
 ```
+
+`docker stop` does not save open documents. `documentserver-prepare4shutdown.sh` saves
+all of them back to the storage and stops accepting new editing sessions, so run it before
+stopping or recreating the container. It can take a while with many open documents.
 
 ## Uninstalling
 
