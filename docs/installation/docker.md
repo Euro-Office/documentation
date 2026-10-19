@@ -37,7 +37,7 @@ curl http://localhost/healthcheck
 Pin to a specific version in production:
 
 ```bash
-ghcr.io/euro-office/documentserver:9.3.1
+ghcr.io/euro-office/documentserver:v9.3.4
 ```
 
 ## Verify with the example app
