@@ -74,6 +74,7 @@ sudo supervisorctl restart all
 | RabbitMQ | `rabbitmq.url` |
 | WOPI | `wopi.enable` |
 | Allow private-IP requests | `services.CoAuthoring.request-filtering-agent.allowPrivateIPAddress` |
+| Allow local network access for plugins | `security.allowLocalNetworkAccessIframes` |
 
 ## Docker
 
@@ -230,6 +231,36 @@ These control how the Document Server fetches documents from storage such as Nex
 | `GENERATE_FONTS` | `true` | Regenerate the font cache on startup |
 | `ADMINPANEL_ENABLED` | `false` | Start the administration panel service |
 | `EXAMPLE_ENABLED` | `false` | Start the bundled example application at `/example/`. Do not enable it on a public instance |
+
+#### Plugin access to the local network
+
+| Variable | Default | Description |
+|---|---|---|
+| `ALLOW_LOCAL_NETWORK_ACCESS_IFRAMES` | `false` | Allow plugins to send requests from the user's browser to private network addresses, for example an AI plugin talking to an internal Ollama instance |
+
+Chromium-based browsers (Chrome, Edge, Brave, Opera, …) and Firefox (since version 153)
+block requests from a web page to private network addresses (RFC 1918 ranges,
+`localhost`) unless every iframe on the way delegates the `local-network` /
+`loopback-network` permission. Plugins run in iframes inside the editor iframe, so
+by default such requests fail in the browser, even when CORS is configured correctly
+on the target. See Chrome's [announcement of Local Network Access](https://developer.chrome.com/blog/local-network-access), the
+[Local Network Access specification](https://wicg.github.io/local-network-access/#permissions) and Firefox's
+[documentation of the `network.lna.*` preferences](https://support.mozilla.org/en-US/kb/control-personal-device-local-network-permissions-firefox) for details.
+
+With `ALLOW_LOCAL_NETWORK_ACCESS_IFRAMES=true`, the plugin iframes delegate this
+permission. The browser then applies its normal checks, including a permission
+prompt for the user. Integrations such as Nextcloud or Seafile need no changes.
+
+!!! warning "Plugins can reach your internal network"
+    When enabled, any installed plugin can send requests from the user's browser
+    to hosts on the user's local network, including services that are not
+    reachable from the internet. Only enable it if you need it, and only install
+    plugins you trust.
+
+!!! note "Browser support"
+    The setting works in Chromium-based browsers and in Firefox 153 and later.
+    Safari does not support it yet; WebKit is implementing it
+    ([WebKit#72725](https://github.com/WebKit/WebKit/pull/72725), [#74003](https://github.com/WebKit/WebKit/pull/74003), [#74740](https://github.com/WebKit/WebKit/pull/74740)).
 
 ### Size limits
 
