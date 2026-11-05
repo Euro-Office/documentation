@@ -38,3 +38,7 @@ unused config keys.
   [content tabs](https://squidfunk.github.io/mkdocs-material/reference/content-tabs/),
   and [code annotations](https://squidfunk.github.io/mkdocs-material/reference/code-blocks/#adding-annotations)
   over plain prose where they aid scanning.
+
+## Licence
+
+Documentation is licensed under [CC BY-SA 4.0](LICENSE), code (`main.py`, `Makefile`, `overrides/`, workflows) under AGPL-3.0-only, see `REUSE.toml`. The Euro-Office name and logos in `docs/assets/` are trademarks; the licence grants no trademark rights (CC BY-SA 4.0 section 2(b)(2)).
