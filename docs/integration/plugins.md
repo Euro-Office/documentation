@@ -9,15 +9,18 @@ how to install, autostart, or hide them, see
 There is no plugin store inside the editors. Plugins are installed by the
 administrator of the document server, for example with the
 [plugin manager](../configuration/plugins.md#plugin-manager). All plugins
-below except DeepL, Translator, and Thesaurus are available there by name.
+below except DeepL, Translator, Thesaurus, and Zotero are available there by
+name.
 
 ## {{ brand.name }} plugins
 
 These plugins are maintained in the
 [{{ brand.name }} plugins repository]({{ brand.repo }}/plugins), a snapshot of
-the ONLYOFFICE plugins. Bundled plugins ship with the server image; the others
-are published as `.plugin` files on the
-[releases page]({{ brand.repo }}/plugins/releases).
+the ONLYOFFICE plugins. Bundled plugins ship with the server image; the others,
+except Zotero, are published as `.plugin` files on the
+[releases page]({{ brand.repo }}/plugins/releases). Zotero is only available
+from source in
+[`sdkjs-plugins/content/zotero`]({{ brand.repo }}/plugins/tree/main/sdkjs-plugins/content/zotero).
 
 !!! note "Work in progress"
 
@@ -29,8 +32,8 @@ are published as `.plugin` files on the
 |---|---|---|---|---|
 | Highlight code | Insert source code with syntax highlighting | Yes | None | Apache-2.0 |
 | Photo editor | Crop, resize, and apply effects to images | Yes | None | Apache-2.0 |
-| Zotero | Insert citations and bibliographies from a Zotero library | No | Zotero API (`api.zotero.org`), citation styles from `zotero.org` | AGPL-3.0 |
-| Mendeley | Insert citations and bibliographies from a Mendeley library | Yes | Mendeley API (`api.mendeley.com`), citation styles from `zotero.org` and `raw.githubusercontent.com`, with a bundled fallback for common styles | Apache-2.0 |
+| Zotero | Insert citations and bibliographies from a Zotero library. Source only, not in releases or the plugin manager | No | Zotero API (`api.zotero.org`), citation styles from `zotero.org` | AGPL-3.0 |
+| Mendeley | Insert citations and bibliographies from a Mendeley library | Yes | Mendeley API (`api.mendeley.com`), citation styles from `zotero.org` and `raw.githubusercontent.com` | Apache-2.0 |
 | OCR | Recognize text in images and insert it | No | OCR engine and language data from `cdn.jsdelivr.net`. Images are processed in the browser | Apache-2.0 |
 | DeepL | Translate the selected text with DeepL | No | DeepL API, through the ONLYOFFICE proxy `plugins-services.onlyoffice.com` | Apache-2.0 |
 | Translator | Translate the selected text with Google Translate | No | Google Translate | Apache-2.0 |

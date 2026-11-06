@@ -48,7 +48,7 @@ not listed as a plugin.
     Bundling plugins into the image is planned but not released yet. Current
     images ship an empty `sdkjs-plugins` directory without the `v1` helper
     scripts. Until bundling lands, mount the `v1` folder from the
-    [plugins repository]({{ brand.repo }}/plugins/tree/master/sdkjs-plugins/v1)
+    [plugins repository]({{ brand.repo }}/plugins/tree/main/sdkjs-plugins/v1)
     next to your plugins, the same way as a plugin folder (see
     [Docker](#docker)).
 
@@ -75,8 +75,10 @@ Ubuntu the package asks the same question through debconf
 
 ## Adding a plugin
 
-Plugins that are not bundled are published as `.plugin` files on the
-[releases page]({{ brand.repo }}/plugins/releases) of the plugins repository.
+Plugins that are not bundled, except Zotero, are published as `.plugin` files
+on the [releases page]({{ brand.repo }}/plugins/releases) of the plugins
+repository. Zotero is only available from source in
+[`sdkjs-plugins/content/zotero`]({{ brand.repo }}/plugins/tree/main/sdkjs-plugins/content/zotero).
 A `.plugin` file is a zip archive of the plugin folder. Plugins from other
 sources work the same way as long as they follow the
 [migration notes](../development/plugins.md#migrating-an-existing-plugin).
@@ -85,7 +87,7 @@ sources work the same way as long as they follow the
 
     The release workflow for `.plugin` files is still being set up. Until the
     first release, take the plugin folder from
-    [`sdkjs-plugins/content`]({{ brand.repo }}/plugins/tree/master/sdkjs-plugins/content)
+    [`sdkjs-plugins/content`]({{ brand.repo }}/plugins/tree/main/sdkjs-plugins/content)
     in the plugins repository.
 
 Before adding a plugin, check the [security notes](#security) and the external
@@ -109,7 +111,7 @@ downloads the `.plugin` files from the
 ```bash
 documentserver-pluginsmanager.sh --print-marketplace
 documentserver-pluginsmanager.sh --print-installed
-documentserver-pluginsmanager.sh --install="ocr, zotero"
+documentserver-pluginsmanager.sh --install="ocr, languagetool"
 documentserver-pluginsmanager.sh --update-all
 documentserver-pluginsmanager.sh --remove="ocr"
 ```
