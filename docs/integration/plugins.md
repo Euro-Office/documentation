@@ -32,8 +32,10 @@ from source in
 |---|---|---|---|---|
 | Highlight code | Insert source code with syntax highlighting | Yes | None | Apache-2.0 |
 | Photo editor | Crop, resize, and apply effects to images | Yes | None | Apache-2.0 |
+| Doc2md | Convert the document to Markdown or HTML | Yes | None | Apache-2.0 |
+| HTML | Edit the document as HTML and paste it back | Yes | None | Apache-2.0 |
 | Zotero | Insert citations and bibliographies from a Zotero library. Source only, not in releases or the plugin manager | No | Zotero API (`api.zotero.org`), citation styles from `zotero.org` | AGPL-3.0 |
-| Mendeley | Insert citations and bibliographies from a Mendeley library | Yes | Mendeley API (`api.mendeley.com`), citation styles from `zotero.org` and `raw.githubusercontent.com` | Apache-2.0 |
+| Mendeley | Insert citations and bibliographies from a Mendeley library | No | Mendeley API (`api.mendeley.com`), citation styles from `zotero.org` and `raw.githubusercontent.com` | Apache-2.0 |
 | OCR | Recognize text in images and insert it | No | OCR engine and language data from `cdn.jsdelivr.net`. Images are processed in the browser | Apache-2.0 |
 | DeepL | Translate the selected text with DeepL | No | DeepL API, through the ONLYOFFICE proxy `plugins-services.onlyoffice.com` | Apache-2.0 |
 | Translator | Translate the selected text with Google Translate | No | Google Translate | Apache-2.0 |

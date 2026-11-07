@@ -59,7 +59,8 @@ from the [{{ brand.name }} plugins repository]({{ brand.repo }}/plugins):
 |---|---|
 | Highlight code | Insert source code with syntax highlighting |
 | Photo editor | Crop, resize, and apply effects to images |
-| Mendeley | Insert citations and bibliographies from a Mendeley library |
+| Doc2md | Convert the document to Markdown or HTML |
+| HTML | Edit the document as HTML and paste it back |
 
 All bundled plugins are visual plugins: they appear in the **Plugins** tab and
 only run when a user opens them. The editors never load plugins from external
