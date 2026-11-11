@@ -75,7 +75,7 @@ docker run -d \
   -v /path/to/data:/var/lib/{{ brand.package_path_name }}/documentserver \
   -v /path/to/private:/var/www/{{ brand.package_path_name }}/Data \
   -v /path/to/logs:/var/log/{{ brand.package_path_name }}/documentserver \
-  -v /path/to/postgresql:/var/lib/postgresql \
+  -v {{ brand.package_path_name }}-postgresql:/var/lib/postgresql \
   ghcr.io/euro-office/documentserver:latest
 ```
 
@@ -85,6 +85,10 @@ docker run -d \
 | `/var/www/{{ brand.package_path_name }}/Data` | Generated secrets and run time settings, see below |
 | `/var/log/{{ brand.package_path_name }}/documentserver` | Logs (optional) |
 | `/var/lib/postgresql` | Bundled database, holds edits not yet saved back to the storage. Not needed with an external database (`DB_HOST`) |
+
+Use a named volume for `/var/lib/postgresql`, not a host path: the database is created when
+the image is built, and Docker copies it into an empty named volume on first start, while an
+empty host directory hides it and the container exits.
 
 The documents themselves live in the integrating application, for example Nextcloud. What
 is at risk without these volumes are edits that have not been saved back yet.
