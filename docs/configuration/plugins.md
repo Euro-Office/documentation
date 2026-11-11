@@ -94,6 +94,13 @@ a built-in **Plugins** tab with a plugin manager, where individual users can add
 plugins for their own session without server access. This is useful for testing
 a plugin before deploying it for everyone.
 
+## Plugins that access the local network
+
+Some plugins send requests directly from the user's browser to a service on the
+internal network, for example an AI plugin using a local Ollama instance.
+Chromium-based browsers and Firefox (since version 153) block these requests unless
+the server explicitly allows it. See [Plugin access to the local network](server.md#plugin-access-to-the-local-network).
+
 ## Removing a plugin
 
 Remove the plugin's folder and re-register so the editors stop loading it.
