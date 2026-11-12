@@ -53,7 +53,7 @@ The Document Server is not a standalone application. It provides the editors and
     | Platform | Architecture | Package | | |
     |---|---|---|---|---|
     | :fontawesome-brands-ubuntu: Ubuntu 24.04 LTS, :fontawesome-brands-debian: Debian 12 | amd64, arm64 | `.deb` | [Download](https://github.com/Euro-Office/DocumentServer/releases/latest){ .md-button .md-button--primary } | [Ubuntu docs](ubuntu.md){ .md-button } [Debian docs](debian.md){ .md-button } |
-    | :fontawesome-brands-fedora: Fedora 41+ | x86_64, aarch64 | `.rpm` | [Download](https://github.com/Euro-Office/DocumentServer/releases/latest){ .md-button .md-button--primary } | [Documentation](fedora.md){ .md-button } |
+    | :fontawesome-brands-fedora: Fedora 41+, Rocky Linux 9 | x86_64, aarch64 | `.rpm` | [Download](https://github.com/Euro-Office/DocumentServer/releases/latest){ .md-button .md-button--primary } | [Documentation](fedora.md){ .md-button } |
     | :fontawesome-brands-docker: Docker | amd64, arm64 | Container image | [Download](https://github.com/Euro-Office/DocumentServer/pkgs/container/documentserver){ .md-button .md-button--primary } | [Documentation](docker.md){ .md-button } |
 
 Download buttons open the latest release, pick the file for your architecture there.
@@ -121,13 +121,13 @@ Nextcloud Office provides signed APT and DNF repositories at [`https://download.
 
     [:octicons-arrow-right-24: Debian installation](debian.md)
 
-- :fontawesome-brands-fedora: **Fedora (rpm)**
+- :fontawesome-brands-fedora: **Fedora / Rocky Linux (rpm)**
 
     ---
 
-    Install from an `.rpm` package on Fedora 41+. Tested on Fedora 44.
+    Install from an `.rpm` package on Fedora 41+ or Rocky Linux 9. Tested on Fedora 44 and Rocky Linux 9.
 
-    [:octicons-arrow-right-24: Fedora installation](fedora.md)
+    [:octicons-arrow-right-24: Fedora / Rocky Linux installation](fedora.md)
 
 </div>
 
@@ -143,7 +143,7 @@ For production deployments you typically place the document server behind a reve
 
 ## Which method should I use?
 
-| | Docker | Ubuntu (deb) | Debian (deb) | Fedora (rpm) |
+| | Docker | Ubuntu (deb) | Debian (deb) | Fedora / Rocky (rpm) |
 |---|---|---|---|---|
 | Easiest to update | Yes | | | |
 | Full OS control | | Yes | Yes | Yes |
