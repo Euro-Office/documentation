@@ -111,6 +111,8 @@ nav:
       - Installing plugins: configuration/plugins.md
       - Logging: configuration/logging.md
       - Command-line tools: configuration/commands.md
+  - Using the editors:
+      - Macros: usage/macros.md
   - Integration:
       - integration/index.md
       - Nextcloud: integration/nextcloud.md
