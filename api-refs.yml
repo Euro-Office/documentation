@@ -1,0 +1,17 @@
+# SPDX-FileCopyrightText: Euro-Office contributors
+# SPDX-License-Identifier: AGPL-3.0-only
+#
+# Source refs the API reference is generated from (scripts/gen-api.mjs).
+# Pin Euro-Office commit SHAs or tags only. For local development, point a
+# source at a checkout with API_SRC_SDKJS, API_SRC_WEB_APPS or API_SRC_SERVER.
+
+sdkjs:
+  repo: Euro-Office/sdkjs
+  ref: 5663efe406fe096f53c6bee26e91da1b8f7ba3c9
+web-apps:
+  repo: Euro-Office/web-apps
+  # feature/documentation-for-config, until config.d.ts lands on main
+  ref: 4c69cab3a7403a3f276b47dab26667f038ca097a
+server:
+  repo: Euro-Office/server
+  ref: 8929e47acfb9921d7dff43d3968fbeb1916049ba

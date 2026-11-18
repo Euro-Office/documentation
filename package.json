@@ -1,0 +1,17 @@
+{
+  "name": "documentation-api-gen",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "api": "node scripts/gen-api.mjs",
+    "test": "node --test \"scripts/*.test.mjs\""
+  },
+  "devDependencies": {
+    "js-yaml": "4.3.2",
+    "jsdoc": "4.0.5",
+    "typedoc": "0.28.20",
+    "typedoc-plugin-markdown": "4.14.1",
+    "typescript": "5.9.3"
+  }
+}
