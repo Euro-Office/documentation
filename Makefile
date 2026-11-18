@@ -59,8 +59,8 @@ whitelabel-check: install api  ## Build with example overrides and grep for bran
 	BRAND_PRIMARY_COLOR='deep purple' \
 	$(MKDOCS) build --strict
 	@echo "--- Stray brand strings (should be empty) ---"
-	@! grep -RIo 'Euro-Office\|eurooffice' site/ --include='*.html' \
-		| grep -v 'edit/main\|raw/main\|whitelabel/docs-rebrand' \
+	@! grep -RIo '.\{0,40\}\(Euro-Office\|eurooffice\).\{0,40\}' site/ --include='*.html' \
+		| grep -v 'edit/main\|raw/main\|whitelabel/docs-rebrand\|github.com/Euro-Office/\|Euro-Office source code' \
 		| sort -u | grep .
 
 clean:  ## Remove built site and generated API pages

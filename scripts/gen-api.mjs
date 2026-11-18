@@ -228,7 +228,7 @@ export function webhooksMd(spec) {
 }
 
 // Generated text may contain "{{": keep it away from mkdocs-macros, but keep the footer branded
-const footer = (repo, ref) => `\n\n---\n\n<small>Generated from [source code]({{ brand.repo }}/${basename(repo)}/tree/${ref}) by Ascensio System SIA, modified by {{ brand.company }} contributors. Code AGPL-3.0-only, documentation text [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).</small>\n`
+const footer = (repo, ref) => `\n\n---\n\n<small>Generated from [Euro-Office source code](https://github.com/Euro-Office/${basename(repo)}/tree/${ref}), original text by Ascensio System SIA. Code AGPL-3.0-only, documentation text [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).</small>\n`
 const wrap = (md, repo, ref) => `{% raw %}\n${md}\n{% endraw %}${footer(repo, ref)}`
 
 function write(file, text) {
@@ -279,8 +279,8 @@ Reference for the {{ brand.name }} APIs, generated from source code.
 
 !!! note "Attribution"
 
-    Generated from source code by Ascensio System SIA, modified by {{ brand.company }} contributors. Code AGPL-3.0-only, documentation text [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
-    Sources: [sdkjs]({{ brand.repo }}/sdkjs/tree/${s.ref}), [web-apps]({{ brand.repo }}/web-apps/tree/${w.ref}), [server]({{ brand.repo }}/server/tree/${sv.ref}).
+    Generated from Euro-Office source code, original text by Ascensio System SIA. Code AGPL-3.0-only, documentation text [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+    Sources: [sdkjs](https://github.com/Euro-Office/sdkjs/tree/${s.ref}), [web-apps](https://github.com/Euro-Office/web-apps/tree/${w.ref}), [server](https://github.com/Euro-Office/server/tree/${sv.ref}).
 
 - [Text document API](text-document/index.md)
 - [Spreadsheet API](spreadsheet/index.md)
