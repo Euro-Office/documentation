@@ -98,8 +98,7 @@ a plugin before deploying it for everyone.
 
 Some plugins send requests directly from the user's browser to a service on the
 internal network, for example an AI plugin using a local Ollama instance.
-Chromium-based browsers and Firefox (since version 153) block these requests unless
-the server explicitly allows it. See [Plugin access to the local network](server.md#plugin-access-to-the-local-network).
+Most browsers block these requests unless the server explicitly allows it. See [Plugin access to the local network](server.md#plugin-access-to-the-local-network).
 
 ## Removing a plugin
 

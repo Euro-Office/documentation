@@ -252,15 +252,14 @@ permission. The browser then applies its normal checks, including a permission
 prompt for the user. Integrations such as Nextcloud or Seafile need no changes.
 
 !!! warning "Plugins can reach your internal network"
-    When enabled, any installed plugin can send requests from the user's browser
-    to hosts on the user's local network, including services that are not
-    reachable from the internet. Only enable it if you need it, and only install
-    plugins you trust.
+    When enabled, any plugin, including ones users add themselves from the
+    editor's plugin manager, can send requests from the user's browser to hosts
+    on the user's local network, including services that are not reachable from
+    the internet. Only enable it if you need it, and only install plugins you trust.
 
 !!! note "Browser support"
     The setting works in Chromium-based browsers and in Firefox 153 and later.
-    Safari does not support it yet; WebKit is implementing it
-    ([WebKit#72725](https://github.com/WebKit/WebKit/pull/72725), [#74003](https://github.com/WebKit/WebKit/pull/74003), [#74740](https://github.com/WebKit/WebKit/pull/74740)).
+    Safari does not support it yet.
 
 ### Size limits
 
