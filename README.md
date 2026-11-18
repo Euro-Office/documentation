@@ -37,6 +37,10 @@ the source refs pinned in [`api-refs.yml`](api-refs.yml) with
 generate from a local checkout, set `API_SRC_SDKJS`, `API_SRC_WEB_APPS` or
 `API_SRC_SERVER` to its path. `make test` runs the generator tests.
 
+The generator fails when the server ref has no `@openapi` paths. The current
+server and web-apps pins predate the API annotations; bump them in
+`api-refs.yml` once those changes land.
+
 ## Authoring guidelines
 
 - Never hard-code "Euro-Office", use `{{ brand.name }}` so rebranders inherit the change automatically.

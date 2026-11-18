@@ -4,7 +4,7 @@
 // Generates the API reference into docs/api/ from the sources pinned in
 // api-refs.yml. Run with `make api`.
 
-import { execFileSync } from 'node:child_process'
+import { execFileSync, spawnSync } from 'node:child_process'
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { basename, dirname, join } from 'node:path'
@@ -54,26 +54,35 @@ function source(name, ref, repo) {
   return dir
 }
 
+// jsdoc exits 1 on unparsable @param types but still prints all doclets: count those errors, show the rest
 export function jsdoc(cwd, args) {
-  const bin = require.resolve('jsdoc/jsdoc.js')
-  try {
-    return JSON.parse(execFileSync(process.execPath, [bin, '-X', ...args], { cwd, maxBuffer: 1 << 30, stdio: ['ignore', 'pipe', 'inherit'] }))
-  } catch (e) {
-    // jsdoc exits 1 on unparsable @param types but still prints all doclets
-    if (!e.stdout?.length) throw e
-    return JSON.parse(e.stdout)
-  }
+  const r = spawnSync(process.execPath, [require.resolve('jsdoc/jsdoc.js'), '-X', ...args], { cwd, maxBuffer: 1 << 30, encoding: 'utf8' })
+  const lines = (r.stderr ?? '').split('\n').filter(Boolean)
+  const isTypeError = (l) => l.includes("Unable to parse a tag's type expression")
+  lines.filter((l) => !isTypeError(l)).forEach((l) => console.error(l))
+  const ignored = lines.filter(isTypeError).length
+  if (ignored) console.warn(`jsdoc: ignored ${ignored} unparsable tag types in ${args.join(' ')}`)
+  if (!r.stdout) throw new Error(`jsdoc failed with status ${r.status} in ${cwd}`)
+  return JSON.parse(r.stdout)
 }
 
 export function esc(text = '') {
   return text
-    .replace(/[\\`*_[\]{}|<>&]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' })[c] ?? `\\${c}`)
+    .replace(/[\\`*_[\]{}|<>]|&(?!(#\d+|#x[\da-f]+|\w+);)/gi, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' })[c] ?? `\\${c}`)
     .replace(/&lt;(\/?)(b|i|em|strong|code|br)\s*\/?&gt;/g, '<$1$2>')
     .replace(/&lt;note&gt;/g, '<b>Note:</b> ').replace(/&lt;\/note&gt;/g, '')
 }
 
-const cell = (text = '') => esc(text.replace(/^-\s+/, '')).replace(/\s*\n\s*/g, ' ')
-const summary = (text = '') => cell(text.split(/\n|(?<=\.)\s/)[0])
+// Array.<T> -> T[], Object.<K,V> -> Record<K, V>, innermost first
+export function typeName(name) {
+  let prev
+  while (prev !== name) {
+    prev = name
+    name = name.replace(/Array\.<([^<>]*)>/g, '$1[]').replace(/Object\.<([^<>]*)>/g, (_, kv) => `Record<${kv.replace(/\s*,\s*/g, ', ')}>`)
+  }
+  return name
+}
+
 const editorsOf = (d) => d.tags?.find((t) => t.title === 'typeofeditors')?.text.match(/\b(CDE|CSE|CPE|PDFE|CFE)\b/g) ?? []
 const anchor = (name) => name.toLowerCase().replace(/[^\w-]/g, '')
 
@@ -104,7 +113,20 @@ export function sectionPages(doclets, { title, editor, home }) {
   const typeNames = new Set(typedefs.map((d) => d.name))
   const classSet = new Set(classNames)
 
-  const type = (t) => cell((t?.names ?? []).join(' | ')).replace(/\b[A-Za-z_]\w*\b/g, (w) =>
+  // {@link Class#member label} -> link to the class page anchor, plain label if the target is unknown
+  const text = (raw = '') => raw.split(/(\{@link\s[^}]*\})/).map((part) => {
+    const m = part.match(/^\{@link\s+([^\s|}]+)[\s|]*([^}]*)\}$/)
+    if (!m) return esc(part)
+    const [cls, member] = m[1].split('#')
+    const label = esc(m[2].trim() || m[1].replace('#', '.'))
+    if (classSet.has(cls)) return `[${label}](${cls}.md${member ? `#${anchor(member)}` : ''})`
+    const typedef = member ?? cls
+    return typeNames.has(typedef) ? `[${label}](types.md#${anchor(typedef)})` : label
+  }).join('')
+  const cell = (raw = '') => text(raw.replace(/^-\s+/, '')).replace(/\s*\n\s*/g, ' ')
+  const summary = (raw = '') => cell(raw.split(/\n|(?<=\.)\s/)[0])
+
+  const type = (t) => cell((t?.names ?? []).map(typeName).join(' | ')).replace(/\b[A-Za-z_]\w*\b/g, (w) =>
     classSet.has(w) ? `[${w}](${w}.md)` : typeNames.has(w) ? `[${w}](types.md#${anchor(w)})` : w)
   const paramsTable = (params) => !params?.length ? '' : [
     '| Name | Type | Description |', '|---|---|---|',
@@ -113,7 +135,7 @@ export function sectionPages(doclets, { title, editor, home }) {
 
   const memberSection = (d) => [
     `### ${d.name}`,
-    esc(d.description),
+    text(d.description),
     '```javascript\n' + `${d.kind === 'event' ? 'on: ' : ''}${d.name}(${(d.params ?? []).filter((p) => !p.name.includes('.')).map((p) => p.optional ? `[${p.name}]` : p.name).join(', ')})` + '\n```',
     d.params?.length ? `**Parameters**\n\n${paramsTable(d.params)}` : '',
     d.returns?.length ? `**Returns**: ${d.returns.map((r) => `${type(r.type)} ${cell(r.description)}`).join(', ')}` : '',
@@ -128,12 +150,12 @@ export function sectionPages(doclets, { title, editor, home }) {
       ['| Name | Description |', '|---|---|', ...list.map((d) => `| [${d.name}](#${anchor(d.name)}) | ${summary(d.description)} |`)].join('\n'),
       ...list.map(memberSection),
     ].join('\n\n')
-    pages[`${name}.md`] = [`# ${name}`, esc(classDoc[name]?.description),
+    pages[`${name}.md`] = [`# ${name}`, text(classDoc[name]?.description),
       table(own.filter((d) => d.kind === 'function'), 'Methods'),
       table(own.filter((d) => d.kind === 'event'), 'Events')].filter(Boolean).join('\n\n')
   }
   pages['types.md'] = [`# Types`, ...typedefs.map((d) => [
-    `### ${d.name}`, esc(d.description), `**Type**: ${type(d.type)}`,
+    `### ${d.name}`, text(d.description), `**Type**: ${type(d.type)}`,
     d.properties?.length ? paramsTable(d.properties) : '',
   ].filter(Boolean).join('\n\n'))].join('\n\n')
   pages['index.md'] = [`# ${title}`,
@@ -155,8 +177,12 @@ export function mergeOpenapi(fragments, info) {
   }
   for (const { text, where } of fragments) {
     for (const [key, val] of Object.entries(yaml.load(text) ?? {})) {
-      if (key === 'tags') for (const t of val) put(Object.fromEntries(spec.tags.map((x) => [x.name, x])), t.name, t, `tag ${t.name} (${where})`) ?? spec.tags.push(t)
-      else if (key === 'paths' || key === 'webhooks') {
+      if (key === 'tags') {
+        for (const t of val) {
+          if (spec.tags.some((x) => x.name === t.name)) throw new Error(`duplicate tag ${t.name} (${where})`)
+          spec.tags.push(t)
+        }
+      } else if (key === 'paths' || key === 'webhooks') {
         for (const [path, ops] of Object.entries(val)) for (const [method, op] of Object.entries(ops)) {
           put(spec[key][path] ??= {}, method, op, `${key} ${method.toUpperCase()} ${path} (${where})`)
         }
@@ -175,8 +201,30 @@ export function mergeOpenapi(fragments, info) {
     Object.values(o).forEach(walk)
   }
   walk(spec)
+  if (!Object.keys(spec.paths).length) throw new Error('no @openapi paths found: does the pinned server ref have @openapi blocks?')
   for (const k of ['tags', 'webhooks', 'components']) if (!Object.keys(spec[k]).length) delete spec[k]
   return spec
+}
+
+// neoteroi does not render OpenAPI 3.1 webhooks: list them with their payload fields
+export function webhooksMd(spec) {
+  const deref = (o) => o?.$ref ? deref(o.$ref.slice(2).split('/').reduce((x, k) => x[k], spec)) : o
+  const md = (t = '') => t.replace(/\|/g, '\\|').replace(/\s*\n\s*/g, ' ')
+  const values = (p) => (p.oneOf ?? []).filter((v) => 'const' in v).map((v) => `<br>\`${v.const}\` ${md(v.description)}`)
+    .concat(p.enum ? [`<br>Values: ${p.enum.map((v) => `\`${v}\``).join(', ')}`] : []).join('')
+  const out = []
+  for (const [name, ops] of Object.entries(spec.webhooks ?? {})) {
+    for (const [method, op] of Object.entries(ops)) {
+      out.push(...[`### ${name}`, `\`${method.toUpperCase()}\` ${op.summary ?? ''}`, op.description].filter(Boolean))
+      const schema = deref(op.requestBody?.content?.['application/json']?.schema)
+      if (schema?.properties) {
+        out.push('**Payload**', ['| Field | Type | Required | Description |', '|---|---|---|---|',
+          ...Object.entries(schema.properties).map(([field, p]) => `| ${field} | ${p.$ref ? p.$ref.split('/').pop() : p.type === 'array' ? `${p.items?.$ref?.split('/').pop() ?? p.items?.type}[]` : p.type ?? 'any'} | ${schema.required?.includes(field) ? 'yes' : ''} | ${md(p.description)}${values(p)} |`)].join('\n'))
+      }
+      for (const [code, r] of Object.entries(op.responses ?? {})) out.push(`**Response ${code}**: ${md(deref(r).description)}`)
+    }
+  }
+  return out.length ? ['## Webhooks', ...out].join('\n\n') : ''
 }
 
 // Generated text may contain "{{": keep it away from mkdocs-macros, but keep the footer branded
@@ -223,7 +271,7 @@ function main() {
   const server = source('server', sv.ref, sv.repo)
   const spec = mergeOpenapi(openapiFragments(jsdoc(server, ['-r', ...SERVER_DIRS])), { title: 'Server HTTP API', version: sv.ref.slice(0, 12) })
   write(join(OUT, 'server/openapi.json'), JSON.stringify(spec, null, 2))
-  write(join(OUT, 'server/index.md'), `[OAD(./docs/api/server/openapi.json)]${footer(sv.repo, sv.ref)}`)
+  write(join(OUT, 'server/index.md'), `[OAD(./docs/api/server/openapi.json)]\n\n{% raw %}\n${webhooksMd(spec)}\n{% endraw %}${footer(sv.repo, sv.ref)}`)
 
   write(join(OUT, 'index.md'), `# API reference
 
