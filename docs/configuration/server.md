@@ -241,7 +241,9 @@ These control how the Document Server fetches documents from storage such as Nex
 Chromium-based browsers (Chrome, Edge, Brave, Opera, …) and Firefox (since version 153)
 block requests from a web page to private network addresses (RFC 1918 ranges,
 `localhost`) unless every iframe on the way delegates the `local-network` /
-`loopback-network` permission. Plugins run in iframes inside the editor iframe, so
+`loopback-network` permission. Chromium also accepts `local-network-access` as an
+alias, so the iframes delegate all three; Firefox logs that name as an unknown
+feature, which is harmless. Plugins run in iframes inside the editor iframe, so
 by default such requests fail in the browser, even when CORS is configured correctly
 on the target. See Chrome's [announcement of Local Network Access](https://developer.chrome.com/blog/local-network-access), the
 [Local Network Access specification](https://wicg.github.io/local-network-access/#permissions) and Firefox's
