@@ -7,3 +7,5 @@ pymdown-extensions==10.14
 # html.escape). Lift this pin once pymdownx or Pygments fixes the regression.
 Pygments==2.19.2
 PyYAML==6.0.2
+mkdocs-literate-nav==0.6.2
+neoteroi-mkdocs==1.2.0
