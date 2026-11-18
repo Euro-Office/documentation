@@ -29,6 +29,14 @@ mkdocs build --strict
 `--strict` is what CI runs — it fails on broken links, missing pages, and
 unused config keys.
 
+## API reference
+
+`make api` (run by `make build` and `make serve`) generates `docs/api/` from
+the source refs pinned in [`api-refs.yml`](api-refs.yml) with
+`scripts/gen-api.mjs` (needs Node 22+). The output is not committed. To
+generate from a local checkout, set `API_SRC_SDKJS`, `API_SRC_WEB_APPS` or
+`API_SRC_SERVER` to its path. `make test` runs the generator tests.
+
 ## Authoring guidelines
 
 - Never hard-code "Euro-Office", use `{{ brand.name }}` so rebranders inherit the change automatically.

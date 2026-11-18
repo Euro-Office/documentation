@@ -27,8 +27,21 @@ jobs:
           python-version: '3.12'
           cache: pip
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
+          npm ci
+
+      - name: Test API generator
+        run: node --test "scripts/*.test.mjs"
+
+      - name: Generate API reference
+        run: node scripts/gen-api.mjs
 
       - name: Build site
         run: mkdocs build --strict

@@ -7,10 +7,11 @@ PIP          := $(VENV_BIN)/pip
 MKDOCS       := $(VENV_BIN)/mkdocs
 STAMP        := $(VENV)/.installed
 REQUIREMENTS := requirements.txt
+NODE_STAMP   := node_modules/.package-lock.json
 
 .DEFAULT_GOAL := help
 
-.PHONY: help install serve build check whitelabel-check clean clean-venv
+.PHONY: help install api test serve build check whitelabel-check clean clean-venv
 
 help:  ## Show this help
 	@awk 'BEGIN {FS = ":.*##"; printf "Usage:\n  make \033[36m<target>\033[0m\n\nTargets:\n"} \
@@ -24,15 +25,24 @@ $(STAMP): $(REQUIREMENTS)
 	$(PIP) install -r $(REQUIREMENTS)
 	@touch $(STAMP)
 
-serve: install  ## Live preview at http://127.0.0.1:8000
+$(NODE_STAMP): package.json package-lock.json
+	npm ci
+
+api: $(NODE_STAMP)  ## Generate the API reference into docs/api (sources pinned in api-refs.yml)
+	node scripts/gen-api.mjs
+
+test: $(NODE_STAMP)  ## Run the API generator tests
+	node --test "scripts/*.test.mjs"
+
+serve: install api  ## Live preview at http://127.0.0.1:8000
 	$(MKDOCS) serve
 
-build: install  ## Production build into ./site (strict)
+build: install api  ## Production build into ./site (strict)
 	$(MKDOCS) build --strict
 
 check: build  ## Strict build (alias for `build`, kept for CI parity)
 
-whitelabel-check: install  ## Build with example overrides and grep for brand leaks
+whitelabel-check: install api  ## Build with example overrides and grep for brand leaks
 	@BRAND_NAME=Acme \
 	BRAND_SHORT_NAME=Acme \
 	BRAND_TAGLINE='Office for everyone' \
@@ -53,8 +63,8 @@ whitelabel-check: install  ## Build with example overrides and grep for brand le
 		| grep -v 'edit/main\|raw/main\|whitelabel/docs-rebrand' \
 		| sort -u | grep .
 
-clean:  ## Remove built site
-	rm -rf site
+clean:  ## Remove built site and generated API pages
+	rm -rf site docs/api
 
 clean-venv: clean  ## Remove built site and venv
 	rm -rf $(VENV)
