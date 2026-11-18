@@ -6,6 +6,6 @@ SPDX-FileCopyrightText = "Euro-Office contributors"
 SPDX-License-Identifier = "CC-BY-SA-4.0"
 
 [[annotations]]
-path = ["main.py", "Makefile", "overrides/**", ".github/**"]
+path = ["main.py", "Makefile", "overrides/**", ".github/**", "scripts/**", "package.json", "package-lock.json", "api-refs.yml"]
 SPDX-FileCopyrightText = "Euro-Office contributors"
 SPDX-License-Identifier = "AGPL-3.0-only"
